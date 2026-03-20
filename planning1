@@ -1,0 +1,138 @@
+Phase 1 — Conception (20 mars  28 mars)
+Semaine 1 : Définir le projet
+
+
+définir les fonctionnalités principales
+
+définir les chapitres de maths :
+
+
+
+
+rédiger cahier des charges
+
+créer structure des classes principales
+
+
+
+préparer les questions QCM
+
+associer chaque question à une notion de cours
+
+
+
+
+
+
+Phase 2 — Développement cœur Java (29 mars  10 avril)
+Semaine 2 : Gestion du QCM
+
+
+
+
+classe Question
+
+classe Réponse
+
+affichage QCM
+
+
+
+
+lecture des réponses utilisateur
+
+score par catégorie
+
+
+
+
+Semaine 3 : Analyse des erreurs
+
+
+système de détection des lacunes
+
+
+tableau correspondance erreurs → cours
+
+
+
+
+Phase 3 — Base de données de cours (11 avril  20 avril)
+Semaine 4
+
+
+Créer stockage des cours 
+
+
+Associer 
+
+chaque niveau
+
+chaque notion
+
+
+
+
+
+Phase 4 — Interface utilisateur (21 avril  30 avril)
+Semaine 5
+
+
+
+
+écran QCM
+
+
+écran résultats
+
+
+
+
+Phase 5 — Tests et amélioration (1 mai  8 mai)
+Semaine 6
+
+
+tester erreurs
+
+tester réponses 
+
+tester affichage
+
+
+
+correction bugs
+
+optimisation code
+
+
+Phase 6 — Finalisation soutenance (9 mai  15 mai)
+Dernière semaine
+
+
+documentation technique
+
+
+
+préparation présentation orale
+
+
+démonstration projet
+
+
+Répartition idéale des rôles
+
+
+
+logique Java
+
+algorithmes
+
+analyse réponses
+
+
+
+QCM
+
+cours
+
+interface
