@@ -1,1 +1,9 @@
+Cette application est pour les élèves de maths au lycée qui ont besoin d'aide.
+
+L'élève selectionnera son niveau (2nde, 1ère, terminale) et répondra à une liste de questions type QCM pour tester ses connaissances dans différents domaines (géométrie, 
+calcul, fonctions etc). L'application fera des calculs pour savoir quel niveau l'élève a dans différents chapitres. Elle recommandera de travailler sur les thèmes où le 
+niveau est insuffisant, mais l'élève pourra toujours choisir quel chapitre travailler. Lorsque l'élève a choisi, l'appli donne un cours à apprendre, et une fois appris,
+l'élève sera invité à faire un petit QCM pour voir s'il a compris. Ensuite, des exercices sur ce même chapitre sont proposés. Si l'élève trouve les bonnes réponses à 
+ces exos, son niveau dans le thème augmente.
+
 
