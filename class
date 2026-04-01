@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Questions {
@@ -16,13 +17,37 @@ public class Questions {
 	private int chap13;
 	private int chap14;
 	private int chap15;
-	
+	private ArrayList<String> questionss = new ArrayList<>();
+	private ArrayList<String> reponsess = new ArrayList<>();
 	
 	public Questions() {
 		
 	}
+	
+	public void ajQuestions(String quest) {
+		questionss.add(quest);
+	}
+	
+	public void ajReponses(String rep) {
+		reponsess.add(rep);
+	}
+	
+	public void question(int c, int j, int k) {
+		for(int i = 0; i + j < k; i++) {
+			
+			Scanner sc = new Scanner(System.in);
+			System.out.println(questionss.get(i));
+			System.out.println("Entrer votre réponse : ");
+			String reponses = sc.nextLine();
+			
+			if(reponses.equals(reponsess.get(i))) {
+				c++;
+			}
+		}
+	}
+	
 
-	public int question(String reponse) {
+	/*public int question(String reponse) {
 		int a = 0;
 		Scanner sc = new Scanner(System.in); 
 		System.out.println("Entrer votre réponse : ");
@@ -33,7 +58,7 @@ public class Questions {
 		} else {
 			return a;
 		}
-	}
+	}*/
 	
 	public void niveau(int points, int c) {
 		if(c < points) {
