@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Questions {
+	private int chap1;
+	private int chap2;
+	private int chap3;
+	private int chap4;
+	private int chap5;
+	private int chap6;
+	private int chap7;
+	private int chap8;
+	private int chap9;
+	private int chap10;
+	private int chap11;
+	private int chap12;
+	private int chap13;
+	private int chap14;
+	private int chap15;
+	
+	
+	public Questions() {
+		
+	}
+
+	public int question(String reponse) {
+		int a = 0;
+		Scanner sc = new Scanner(System.in); 
+		System.out.println("Entrer votre réponse : ");
+		String reponses = sc.nextLine();
+		if(reponses.equals(reponse)) {
+			a++;
+			return a;
+		} else {
+			return a;
+		}
+	}
+	
+	public void niveau(int points, int c) {
+		if(c < points) {
+			System.out.println("Vous n'avez pas valider le chapitre ");
+			// lien vers le pdf du chapitre
+		}
+		
+	}
+}
