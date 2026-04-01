@@ -1,1 +1,37 @@
+import java.util.Scanner;
 
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		System.out.println("Bienvenue ! Cette application vous servira à augmenter votre niveau en maths au lycée !");
+		
+		Scanner niveau=new Scanner(System.in);
+		
+		System.out.println("Veuillez indiquer votre classe (tapez 1 pour 1ère et 2 pour Terminale : ");
+		
+		
+		int level=niveau.nextInt();
+		
+		while(level!=2||level!=1){
+			System.out.println("Erreur. Réessayez !");
+			System.out.println("Veuillez indiquer votre classe (tapez 1 pour 1ère et 2 pour Terminale : ");
+		}
+		if(level==1) {
+			System.out.println("Vous êtes en 1ère, et allez maintenant répondre à une série de questions à choix uniques sur les différents thèmes abordés dans l'année.  ");
+			System.out.println("Pour chaque question, veuillez répondre par A,B,C,D ou S si c'est un thème que vous n'avez pas encore abordé. ");
+			System.out.println("Faites entrée pour commencer le test. Bon courage!");
+			
+			//questions 1ère
+		}else if(level==2){
+			//questions term
+		}
+		
+		
+		
+		
+	}
+
+}
