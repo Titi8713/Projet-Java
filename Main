@@ -35,3 +35,22 @@ public class Main {
 	}
 
 }
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Questions q1 = new Questions();
+		
+		int c1 = 0;
+		
+		c1 += q1.question("a");
+		c1 += q1.question("b");
+		
+		q1.niveau(1, c1);
+		System.out.println(c1);
+
+	}
+
+}
