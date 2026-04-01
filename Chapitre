@@ -29,20 +29,25 @@ Variable aléatoire et loi de probabilité d’une variable aléatoire.
 
 Term : 
 
-Fonctions:
-Géométrie vectorielle, droites et plans de l'espace
-Plan, produit scalaire, orthogonalité et distance dans l'espace
-Combinatoire et dénombrement
-Les suites et récurrence
-Limites de fonctions 
-Continuité
-Compléments sur la dérivation eet la convexité
+Fonctions :
+Compléments sur la dérivation et la convexité
 Fonction logarithme népérien
 Fonctions trigonométriques
 Primitives
 Equations différentielles
 Calcul intégral
-Probabilités et dénombrement
+Continuité
+
+Suites : 
+Les suites et récurrence
+Limites de fonctions
+
+Géométrie dans l'espace :
+Géométrie vectorielle, droites et plans de l'espace
+Plan, produit scalaire, orthogonalité et distance dans l'espace
+
+Probabilités :
+Combinatoire et dénombrement
 Succession dépreuve indépendante et loi Binomiale
 Somme de deux variables 
 Loi des grands nombres
