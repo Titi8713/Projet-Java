@@ -38,6 +38,7 @@ public class Main {
 
 
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -45,12 +46,16 @@ public class Main {
 		Questions q1 = new Questions();
 		
 		int c1 = 0;
+		int c2 = 0;
+		q1.ajQuestions("Combien vaut 2+2 \n a) 4  b) 2  c) 5  d) 8");
+		q1.ajReponses("a");
 		q1.ajQuestions("Combien vaut 2+2 \n a) 4  b) 2  c) 5  d) 8");
 		q1.ajReponses("a");
 		c1 += q1.question(c1,0,1);
+		c2 += q1.question(c2,1,2);
 		
 		System.out.println(c1);
-
+		System.out.println(c2);
 	}
 
 }
