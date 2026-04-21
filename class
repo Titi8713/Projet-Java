@@ -1,70 +1,30 @@
-import java.util.ArrayList;
+import java.sql.*;
 import java.util.Scanner;
 
-public class Questions {
-	private int chap1;
-	private int chap2;
-	private int chap3;
-	private int chap4;
-	private int chap5;
-	private int chap6;
-	private int chap7;
-	private int chap8;
-	private int chap9;
-	private int chap10;
-	private int chap11;
-	private int chap12;
-	private int chap13;
-	private int chap14;
-	private int chap15;
-	private ArrayList<String> questionss = new ArrayList<>();
-	private ArrayList<String> reponsess = new ArrayList<>();
-	
-	public Questions() {
-		
-	}
-	
-	public void ajQuestions(String quest) {
-		questionss.add(quest);
-	}
-	
-	public void ajReponses(String rep) {
-		reponsess.add(rep);
-	}
-	
-	public void question(int c, int j, int k) {
-		for(int i = 0; i + j < k; i++) {
-			
-			Scanner sc = new Scanner(System.in);
-			System.out.println(questionss.get(i));
-			System.out.println("Entrer votre réponse : ");
-			String reponses = sc.nextLine();
-			
-			if(reponses.equals(reponsess.get(i))) {
-				c++;
-			}
-		}
-	}
-	
+public class Réponse {
 
-	/*public int question(String reponse) {
-		int a = 0;
-		Scanner sc = new Scanner(System.in); 
-		System.out.println("Entrer votre réponse : ");
-		String reponses = sc.nextLine();
-		if(reponses.equals(reponse)) {
-			a++;
-			return a;
-		} else {
-			return a;
-		}
-	}*/
-	
-	public void niveau(int points, int c) {
-		if(c < points) {
-			System.out.println("Vous n'avez pas valider le chapitre ");
-			// lien vers le pdf du chapitre
-		}
-		
-	}
+    public static int question(ResultSet res) throws SQLException {
+
+        int score = 0;
+        Scanner sc = new Scanner(System.in);
+
+        while (res.next()) {
+
+            System.out.println("\nQuestion : " + res.getString("question"));
+
+            System.out.print("Entrer votre réponse (A/B/C/D) : ");
+            String reponse = sc.nextLine().toUpperCase();
+
+            String bonneReponse = res.getString("reponse");
+
+            if (reponse.equals(bonneReponse)) {
+                System.out.println("✔ Correct !");
+                score++;
+            } else {
+                System.out.println("❌ Faux ! Bonne réponse : " + bonneReponse);
+            }
+        }
+
+        return score;
+    }
 }
