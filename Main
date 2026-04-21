@@ -1,325 +1,126 @@
-import java.util.Scanner;
+import java.sql.*;
 
 public class Main {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+    public static void main(String[] args) {
 
-		
-		System.out.println("Bienvenue ! Cette application vous servira à augmenter votre niveau en maths au lycée !");
-		
-		Scanner niveau=new Scanner(System.in);
-		
-		System.out.println("Veuillez indiquer votre classe (tapez 1 pour 1ère et 2 pour Terminale : ");
-		
-		
-		int level=niveau.nextInt();
-		
-		while(level!=2||level!=1){
-			System.out.println("Erreur. Réessayez !");
-			System.out.println("Veuillez indiquer votre classe (tapez 1 pour 1ère et 2 pour Terminale : ");
-		}
-		if(level==1) {
-			System.out.println("Vous êtes en 1ère, et allez maintenant répondre à une série de questions à choix uniques sur les différents thèmes abordés dans l'année.  ");
-			System.out.println("Pour chaque question, veuillez répondre par A,B,C,D ou S si c'est un thème que vous n'avez pas encore abordé. ");
-			System.out.println("Faites entrée pour commencer le test. Bon courage!");
-			
-			//questions 1ère
-		}else if(level==2){
-			//questions term
-		}
-		
-		
-		
-		
-	}
+        String url = "jdbc:sqlite:projet.db";
 
+        try {
+
+            Connection conn = DriverManager.getConnection(url);
+            Statement stmt = conn.createStatement();
+
+            String sqlCreate =
+                "CREATE TABLE IF NOT EXISTS questions (" +
+                "id INTEGER PRIMARY KEY, " +
+                "question TEXT UNIQUE, " +
+                "reponse CHAR(1), " +
+                "difficulte INT, " +
+                "chapitre TEXT)";
+
+            stmt.execute(sqlCreate);
+            
+
+            String sqlInsert =
+            	    "INSERT OR IGNORE INTO questions(question,reponse,difficulte,chapitre) VALUES " +
+            	    		// DÉNOMBREMENT
+            	    		"('Combien de façons de choisir 2 élèves parmi 5 ? A: 10  B: 5  C: 20  D: 15', 'A', 0, 'Dénombrement'),"+
+
+            	    		"('Combien d’anagrammes du mot ABCD ? A: 12  B: 24  C: 6  D: 48', 'B', 1, 'Dénombrement'),"+
+
+            	    		"('Combien de codes à 3 chiffres avec répétition ? A: 900  B: 720  C: 1000  D: 100', 'C', 2, 'Dénombrement'),"+
+
+            	    		"('Combien de façons de choisir 3 personnes parmi 10 avec ordre ? A: 120  B: 720  C: 60  D: 30', 'B', 3, 'Dénombrement'),"+
+
+            	    		// VECTEURS
+            	    		"('Qu''est-ce qu''un vecteur ? A: Une position  B: Une direction + norme  C: Une droite  D: Un point', 'B', 0, 'Vecteurs'),"+
+
+            	    		"('Condition de colinéarité ? A: Produit nul  B: Vecteurs proportionnels  C: Orthogonaux  D: Égaux', 'B', 1, 'Vecteurs'),"+
+
+            	    		"('Condition d''indépendance linéaire ? A: Tous égaux  B: Aucun vecteur combinaison des autres  C: Colinéaires  D: Orthogonaux', 'B', 2, 'Vecteurs'),"+
+
+            	    		"('Comment définir un plan ? A: 1 vecteur  B: 1 point  C: 2 vecteurs non colinéaires  D: 3 vecteurs colinéaires', 'C', 3, 'Vecteurs'),"+
+
+            	    		// PRODUIT SCALAIRE
+            	    		"('Produit scalaire de deux vecteurs orthogonaux ? A: 1  B: 0  C: -1  D: infini', 'B', 0, 'Produit scalaire'),"+
+
+            	    		"('Formule du produit scalaire ? A: u+v  B: ||u|| ||v|| cos(theta)  C: u×v  D: u-v', 'B', 1, 'Produit scalaire'),"+
+
+            	    		"('Condition d''orthogonalité ? A: Produit scalaire = 0  B: Norme nulle  C: Somme nulle  D: Produit = 1', 'A', 2, 'Produit scalaire'),"+
+
+            	    		"('Vecteur normal à un plan ? A: Somme  B: Différence  C: Produit vectoriel  D: Projection', 'C', 3, 'Produit scalaire'),"+
+
+            	    		// DROITE
+            	    		"('Forme paramétrique d''une droite ? A: ax+by+c=0  B: r = a + t u  C: y=ax²  D: x=y', 'B', 0, 'Droite'),"+
+
+            	    		"('Que représente t ? A: Une constante  B: Paramètre réel  C: Une norme  D: Une direction', 'B', 1, 'Droite'),"+
+
+            	    		"('Comment obtenir un point sur une droite ? A: Fixer t  B: Dériver  C: Intégrer  D: Multiplier', 'A', 2, 'Droite'),"+
+
+            	    		"('Appartenance à une droite ? A: Dériver  B: Résoudre pour t  C: Multiplier  D: Additionner', 'B', 3, 'Droite'),"+
+
+            	    		// PLAN
+            	    		"('Forme générale d''un plan ? A: y=ax+b  B: ax+by+cz+d=0  C: x²+y²=1  D: r=a+tu', 'B', 0, 'Plan'),"+
+
+            	    		"('Que représente (a,b,c) ? A: Un point  B: Un vecteur normal  C: Une direction  D: Une norme', 'B', 1, 'Plan'),"+
+
+            	    		"('Comment déterminer un plan avec 3 points ? A: Dériver  B: Résoudre un système  C: Multiplier  D: Intégrer', 'B', 2, 'Plan'),"+
+
+            	    		"('Condition d''appartenance à un plan ? A: Norme nulle  B: Vérifier l''équation  C: Multiplier  D: Dériver', 'B', 3, 'Plan'),"+
+
+            	    		// SUITES
+            	    		"('Limite de 1/n ? A: 1  B: 0  C: +∞  D: -1', 'B', 0, 'Suites'),"+
+
+            	    		"('Théorème des gendarmes ? A: Produit  B: Encadrement ⇒ même limite  C: Somme  D: Division', 'B', 1, 'Suites'),"+
+
+            	    		"('Limite d''une somme de suites ? A: Produit  B: Somme des limites  C: Différence  D: Max', 'B', 2, 'Suites'),"+
+
+            	    		"('Exemple de suite divergente ? A: 1/n  B: n  C: 1/n²  D: constante', 'B', 3, 'Suites'),"+
+
+            	    		// LIMITES
+            	    		"('Limite d''une constante ? A: 0  B: Elle-même  C: +∞  D: -∞', 'B', 0, 'Limites'),"+
+
+            	    		"('Asymptote verticale ? A: Limite nulle  B: Limite infinie  C: Produit nul  D: Somme nulle', 'B', 1, 'Limites'),"+
+
+            	    		"('Limite d''un quotient ? A: Produit  B: Quotient des limites  C: Somme  D: Différence', 'B', 2, 'Limites'),"+
+
+            	    		"('Asymptote oblique ? A: Dérivation  B: Division polynomiale  C: Intégrale  D: Limite nulle', 'B', 3, 'Limites'),"+
+
+            	    		// DÉRIVATION
+            	    		"('Définition de f∘g ? A: f+g  B: f(g(x))  C: f×g  D: f-g', 'B', 0, 'Dérivation'),"+
+
+            	    		"('Dérivée de f(g(x)) ? A: f''(x)  B: f''(g(x))·g''(x)  C: g''(x)  D: f(x)', 'B', 1, 'Dérivation'),"+
+
+            	    		"('Exemple de composition ? A: x²  B: sin(x²)  C: x+1  D: x', 'B', 2, 'Dérivation')," +
+            	    		
+            	    		"('Erreur fréquente ? A: Multiplier  B: Oublier la règle de chaîne  C: Diviser  D: Additionner', 'B', 3, 'Dérivation')";
+            		
+            
+            
+            stmt.execute(sqlInsert);
+
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM questions");
+
+            int score = Réponse.question(rs);
+
+            System.out.println("\nScore final : " + score);
+            
+
+            rs.close();
+            
+            stmt.execute("DELETE FROM questions");
+            
+            stmt.close();
+            conn.close();
+            
+
+        } catch (SQLException e) {
+            System.err.println("Erreur SQL : " + e.getMessage());
+        }
+    }
 }
-
-
-
-
-public class Main {
-
-	public static void main(String[] args) {
-		
-		Questions q1 = new Questions();
-		
-		int c1 = 0;
-		int c2 = 0;
-		q1.ajQuestions("Combien vaut 2+2 \n a) 4  b) 2  c) 5  d) 8");
-		q1.ajReponses("a");
-		q1.ajQuestions("Combien vaut 2+2 \n a) 4  b) 2  c) 5  d) 8");
-		q1.ajReponses("a");
-		c1 += q1.question(c1,0,1);
-		c2 += q1.question(c2,1,2);
-		
-		System.out.println(c1);
-		System.out.println(c2);
-	}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-//CODE DBEAVER QUESTIONS :
-=======================================
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Combien de façons de choisir 2 élèves parmi 5 ?', '10', 0, 'Dénombrement');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Combien d’anagrammes du mot "ABCD" ?', '24', 1, 'Dénombrement');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Combien de codes à 3 chiffres avec répétition ?', '1000', 2, 'Dénombrement');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Combien de façons de choisir 3 personnes parmi 10 avec ordre ?', '720', 3, 'Dénombrement');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Qu''est-ce qu''un vecteur ?', 'Direction + norme', 0, 'Vecteurs espace');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition de colinéarité ?', 'Vecteurs proportionnels', 1, 'Vecteurs espace');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition d''indépendance linéaire ?', 'Aucun vecteur combinaison des autres', 2, 'Vecteurs espace');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Comment définir une direction de plan ?', 'Deux vecteurs non colinéaires', 3, 'Vecteurs espace');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Produit scalaire de deux vecteurs orthogonaux ?', '0', 0, 'Produit scalaire');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Formule du produit scalaire ?', '||u|| ||v|| cos(theta)', 1, 'Produit scalaire');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition d''orthogonalité ?', 'Produit scalaire = 0', 2, 'Produit scalaire');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Vecteur normal à un plan ?', 'Produit vectoriel ou 2 vecteurs du plan', 3, 'Produit scalaire');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Forme générale d''une droite ?', 'r = a + t u', 0, 'Droite paramétrique');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Que représente t ?', 'Paramètre réel', 1, 'Droite paramétrique');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Comment trouver un point sur la droite ?', 'Fixer t', 2, 'Droite paramétrique');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Comment vérifier si un point appartient à une droite ?', 'Résoudre pour t', 3, 'Droite paramétrique');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Forme générale d''un plan ?', 'ax + by + cz + d = 0', 0, 'Plan');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Que représente (a,b,c) ?', 'Vecteur normal', 1, 'Plan');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Comment trouver un plan avec 3 points ?', 'Résoudre un système', 2, 'Plan');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition d''appartenance d''un point ?', 'Vérifier l''équation', 3, 'Plan');
-
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Limite de 1/n ?', '0', 0, 'Suites');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Théorème des gendarmes ?', 'Encadrement ⇒ même limite', 1, 'Suites');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Limite d''une somme de suites ?', 'Somme des limites', 2, 'Suites');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Exemple de suite divergente ?', 'n → +∞', 3, 'Suites');
-
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Limite d''une constante ?', 'Elle-même', 0, 'Limites fonctions');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Asymptote verticale ?', 'Limite infinie', 1, 'Limites fonctions');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Limite d''un quotient ?', 'Quotient des limites', 2, 'Limites fonctions');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Asymptote oblique ?', 'Division polynomiale', 3, 'Limites fonctions');
-
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Définition de f∘g ?', 'f(g(x))', 0, 'Dérivation');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Dérivée de f(g(x)) ?', 'f''(g(x))·g''(x)', 1, 'Dérivation');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Exemple de composition ?', 'sin(x²)', 2, 'Dérivation');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Erreur fréquente ?', 'Oublier la règle de chaîne', 3, 'Dérivation');
-
-
-
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Définition ?', 'Dérivée de f''', 0, 'Dérivée seconde');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Signification ?', 'Variation de la pente', 1, 'Dérivée seconde');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Exemple ?', 'x² → 2', 2, 'Dérivée seconde');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Lien avec convexité ?', 'f'''>0 ⇒ convexe', 3, 'Dérivée seconde');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Fonction convexe ?', 'Courbe vers le haut', 0, 'Convexité');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition ?', 'f'''' ≥ 0', 1, 'Convexité');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Point d''inflexion ?', 'Changement de convexité', 2, 'Convexité');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Méthode ?', 'Signe de f''''', 3, 'Convexité');
-
-
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Fonction continue ?', 'Pas de rupture', 0, 'Continuité');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('TVI ?', 'Valeur intermédiaire', 1, 'Continuité');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition TVI ?', 'Continuité sur [a,b]', 2, 'Continuité');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Application ?', 'Trouver une racine', 3, 'Continuité');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Domaine de ln(x) ?', 'x > 0', 0, 'Logarithme');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('ln(ab) ?', 'ln a + ln b', 1, 'Logarithme');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Dérivée de ln(x) ?', '1/x', 2, 'Logarithme');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Limite de ln(x) ?', '+∞', 3, 'Logarithme');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('sin(0) ?', '0', 0, 'Trigonométrie');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('sin² + cos² ?', '1', 1, 'Trigonométrie');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Dérivée de sin(x) ?', 'cos(x)', 2, 'Trigonométrie');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Période ?', '2π', 3, 'Trigonométrie');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Forme ?', 'y'' = ay', 0, 'Équations différentielles');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Solution ?', 'y = Ce^(ax)', 1, 'Équations différentielles');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Condition initiale ?', 'Détermine C', 2, 'Équations différentielles');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Application ?', 'Croissance/décroissance', 3, 'Équations différentielles');
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Définition ?', 'Aire sous la courbe', 0, 'Intégrales');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Linéarité ?', '∫(f+g)=∫f+∫g', 1, 'Intégrales');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('IPP ?', 'uv'' → uv - ∫u''v', 2, 'Intégrales');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Chasles ?', 'Découpage intervalle', 3, 'Intégrales');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Expérience de Bernoulli ?', 'Succès/échec', 0, 'Bernoulli');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Paramètres ?', 'n et p', 1, 'Bernoulli');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Exemple ?', 'Pile ou face', 2, 'Bernoulli');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Représentation ?', 'Arbre de probabilité', 3, 'Bernoulli');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Définition ?', 'Somme de Bernoulli', 0, 'Binomiale');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Formule ?', 'C(n,k)p^k(1-p)^(n-k)', 1, 'Binomiale');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Espérance ?', 'np', 2, 'Binomiale');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Variance ?', 'np(1-p)', 3, 'Binomiale');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Espérance de X+Y ?', 'E(X)+E(Y)', 0, 'Variables aléatoires');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Indépendance ?', 'Simplifie les calculs', 1, 'Variables aléatoires');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Variance somme indépendante ?', 'Somme des variances', 2, 'Variables aléatoires');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Exemple ?', 'Jeux cumulés', 3, 'Variables aléatoires');
-
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Idée ?', 'Stabilité des moyennes', 0, 'Grands nombres');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Inégalité de Tchebychev ?', 'Contrôle des écarts', 1, 'Grands nombres');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Convergence ?', 'Vers l''espérance', 2, 'Grands nombres');
-
-INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
-VALUES ('Interprétation ?', 'Fiabilité statistique', 3, 'Grands nombres');
-
 
 
 
