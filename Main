@@ -59,3 +59,280 @@ public class Main {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+//CODE DBEAVER QUESTIONS :
+=======================================
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Combien de façons de choisir 2 élèves parmi 5 ?', '10', 0, 'Dénombrement');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Combien d’anagrammes du mot "ABCD" ?', '24', 1, 'Dénombrement');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Combien de codes à 3 chiffres avec répétition ?', '1000', 2, 'Dénombrement');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Combien de façons de choisir 3 personnes parmi 10 avec ordre ?', '720', 3, 'Dénombrement');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Qu''est-ce qu''un vecteur ?', 'Direction + norme', 0, 'Vecteurs espace');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition de colinéarité ?', 'Vecteurs proportionnels', 1, 'Vecteurs espace');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition d''indépendance linéaire ?', 'Aucun vecteur combinaison des autres', 2, 'Vecteurs espace');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Comment définir une direction de plan ?', 'Deux vecteurs non colinéaires', 3, 'Vecteurs espace');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Produit scalaire de deux vecteurs orthogonaux ?', '0', 0, 'Produit scalaire');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Formule du produit scalaire ?', '||u|| ||v|| cos(theta)', 1, 'Produit scalaire');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition d''orthogonalité ?', 'Produit scalaire = 0', 2, 'Produit scalaire');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Vecteur normal à un plan ?', 'Produit vectoriel ou 2 vecteurs du plan', 3, 'Produit scalaire');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Forme générale d''une droite ?', 'r = a + t u', 0, 'Droite paramétrique');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Que représente t ?', 'Paramètre réel', 1, 'Droite paramétrique');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Comment trouver un point sur la droite ?', 'Fixer t', 2, 'Droite paramétrique');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Comment vérifier si un point appartient à une droite ?', 'Résoudre pour t', 3, 'Droite paramétrique');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Forme générale d''un plan ?', 'ax + by + cz + d = 0', 0, 'Plan');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Que représente (a,b,c) ?', 'Vecteur normal', 1, 'Plan');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Comment trouver un plan avec 3 points ?', 'Résoudre un système', 2, 'Plan');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition d''appartenance d''un point ?', 'Vérifier l''équation', 3, 'Plan');
+
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Limite de 1/n ?', '0', 0, 'Suites');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Théorème des gendarmes ?', 'Encadrement ⇒ même limite', 1, 'Suites');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Limite d''une somme de suites ?', 'Somme des limites', 2, 'Suites');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Exemple de suite divergente ?', 'n → +∞', 3, 'Suites');
+
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Limite d''une constante ?', 'Elle-même', 0, 'Limites fonctions');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Asymptote verticale ?', 'Limite infinie', 1, 'Limites fonctions');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Limite d''un quotient ?', 'Quotient des limites', 2, 'Limites fonctions');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Asymptote oblique ?', 'Division polynomiale', 3, 'Limites fonctions');
+
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Définition de f∘g ?', 'f(g(x))', 0, 'Dérivation');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Dérivée de f(g(x)) ?', 'f''(g(x))·g''(x)', 1, 'Dérivation');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Exemple de composition ?', 'sin(x²)', 2, 'Dérivation');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Erreur fréquente ?', 'Oublier la règle de chaîne', 3, 'Dérivation');
+
+
+
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Définition ?', 'Dérivée de f''', 0, 'Dérivée seconde');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Signification ?', 'Variation de la pente', 1, 'Dérivée seconde');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Exemple ?', 'x² → 2', 2, 'Dérivée seconde');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Lien avec convexité ?', 'f'''>0 ⇒ convexe', 3, 'Dérivée seconde');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Fonction convexe ?', 'Courbe vers le haut', 0, 'Convexité');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition ?', 'f'''' ≥ 0', 1, 'Convexité');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Point d''inflexion ?', 'Changement de convexité', 2, 'Convexité');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Méthode ?', 'Signe de f''''', 3, 'Convexité');
+
+
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Fonction continue ?', 'Pas de rupture', 0, 'Continuité');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('TVI ?', 'Valeur intermédiaire', 1, 'Continuité');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition TVI ?', 'Continuité sur [a,b]', 2, 'Continuité');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Application ?', 'Trouver une racine', 3, 'Continuité');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Domaine de ln(x) ?', 'x > 0', 0, 'Logarithme');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('ln(ab) ?', 'ln a + ln b', 1, 'Logarithme');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Dérivée de ln(x) ?', '1/x', 2, 'Logarithme');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Limite de ln(x) ?', '+∞', 3, 'Logarithme');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('sin(0) ?', '0', 0, 'Trigonométrie');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('sin² + cos² ?', '1', 1, 'Trigonométrie');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Dérivée de sin(x) ?', 'cos(x)', 2, 'Trigonométrie');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Période ?', '2π', 3, 'Trigonométrie');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Forme ?', 'y'' = ay', 0, 'Équations différentielles');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Solution ?', 'y = Ce^(ax)', 1, 'Équations différentielles');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Condition initiale ?', 'Détermine C', 2, 'Équations différentielles');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Application ?', 'Croissance/décroissance', 3, 'Équations différentielles');
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Définition ?', 'Aire sous la courbe', 0, 'Intégrales');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Linéarité ?', '∫(f+g)=∫f+∫g', 1, 'Intégrales');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('IPP ?', 'uv'' → uv - ∫u''v', 2, 'Intégrales');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Chasles ?', 'Découpage intervalle', 3, 'Intégrales');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Expérience de Bernoulli ?', 'Succès/échec', 0, 'Bernoulli');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Paramètres ?', 'n et p', 1, 'Bernoulli');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Exemple ?', 'Pile ou face', 2, 'Bernoulli');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Représentation ?', 'Arbre de probabilité', 3, 'Bernoulli');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Définition ?', 'Somme de Bernoulli', 0, 'Binomiale');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Formule ?', 'C(n,k)p^k(1-p)^(n-k)', 1, 'Binomiale');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Espérance ?', 'np', 2, 'Binomiale');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Variance ?', 'np(1-p)', 3, 'Binomiale');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Espérance de X+Y ?', 'E(X)+E(Y)', 0, 'Variables aléatoires');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Indépendance ?', 'Simplifie les calculs', 1, 'Variables aléatoires');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Variance somme indépendante ?', 'Somme des variances', 2, 'Variables aléatoires');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Exemple ?', 'Jeux cumulés', 3, 'Variables aléatoires');
+
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Idée ?', 'Stabilité des moyennes', 0, 'Grands nombres');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Inégalité de Tchebychev ?', 'Contrôle des écarts', 1, 'Grands nombres');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Convergence ?', 'Vers l''espérance', 2, 'Grands nombres');
+
+INSERT OR IGNORE INTO questions(question, reponse, difficulte, chapitre)
+VALUES ('Interprétation ?', 'Fiabilité statistique', 3, 'Grands nombres');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
