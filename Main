@@ -103,9 +103,8 @@ public class Main {
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM questions");
 
-            int score = Réponse.question(rs);
+            Réponse.question(rs);
 
-            System.out.println("\nScore final : " + score);
             
 
             rs.close();
