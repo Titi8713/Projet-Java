@@ -3,28 +3,57 @@ import java.util.Scanner;
 
 public class Réponse {
 
-    public static int question(ResultSet res) throws SQLException {
+    public static void question(ResultSet res) throws SQLException {
 
-        int score = 0;
         Scanner sc = new Scanner(System.in);
+        String[] chapitres = new String[30]; 
+        int[] scores = new int[30];
+        int nbChapitres = 0;
 
         while (res.next()) {
-
+        	
+        	String chapitre = res.getString("chapitre");
+        	
             System.out.println("\nQuestion : " + res.getString("question"));
-
-            System.out.print("Entrer votre réponse (A/B/C/D) : ");
-            String reponse = sc.nextLine().toUpperCase();
-
-            String bonneReponse = res.getString("reponse");
-
-            if (reponse.equals(bonneReponse)) {
-                System.out.println("✔ Correct !");
-                score++;
-            } else {
-                System.out.println("❌ Faux ! Bonne réponse : " + bonneReponse);
+           	String reponse;
+           	System.out.print("Entrer votre réponse (A/B/C/D) : ");
+           	
+           	int index = -1;
+            for (int i = 0; i < nbChapitres; i++) {
+                if (chapitres[i].equals(chapitre)) {
+                    index = i;
+                    break;
+                }
             }
+            
+            if (index == -1) {
+                chapitres[nbChapitres] = chapitre;
+                scores[nbChapitres] = 0;
+                index = nbChapitres;
+                nbChapitres++;
+            }
+            do {
+            	reponse = sc.nextLine().toUpperCase();
+            	if(!reponse.matches("[ABCD]")) {
+            	
+            		System.out.println("Entrer A, B, C, ou D");
+            	}
+            } while(!reponse.matches("[ABCD]"));
+            
+            String bonneReponse = res.getString("reponse");
+            
+            if (reponse.equals(bonneReponse)) {
+            	
+    			System.out.println("✔ Correct !");
+    			scores[index]++;
+    			
+    		} else {
+    			System.out.println("❌ Faux ! Bonne réponse : " + bonneReponse);
+    		}
         }
-
-        return score;
+        System.out.println("\nScores par chapitre :");
+        for (int i = 0; i < nbChapitres; i++) {
+            System.out.println(chapitres[i] + " : " + scores[i]);
+        }
     }
 }
