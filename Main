@@ -18,14 +18,12 @@ public class Main {
                 "reponse CHAR(1), " +
                 "difficulte INT, " +
                 "chapitre TEXT)";
-
-            stmt.execute(sqlCreate);
             
 
             String sqlInsert =
             	    "INSERT OR IGNORE INTO questions(question,reponse,difficulte,chapitre) VALUES " +
             	    		// DÉNOMBREMENT
-            	    		"('Combien de façons de choisir 2 élèves parmi 5 ? A: 10  B: 5  C: 20  D: 15', 'A', 0, 'Dénombrement'),"+
+            	    		"('Combien de façons de choisir 2 élèves parmi 5 ? \nA: 10  B: 5  C: 20  D: 15', 'A', 0, 'Dénombrement'),"+
 
             	    		"('Combien d’anagrammes du mot ABCD ? A: 12  B: 24  C: 6  D: 48', 'B', 1, 'Dénombrement'),"+
 
@@ -97,20 +95,28 @@ public class Main {
             	    		"('Erreur fréquente ? A: Multiplier  B: Oublier la règle de chaîne  C: Diviser  D: Additionner', 'B', 3, 'Dérivation')";
             		
             
+            stmt.execute("DROP TABLE IF EXISTS questions");
             
+            stmt.execute(sqlCreate);
             stmt.execute(sqlInsert);
+            
+            
+            ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions");
+            int nbquest = count.getInt(1);
+            
+            if (count.next()) {
+                System.out.println("Nombre de questions : " + nbquest);
+            }
+            count.close();
 
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM questions");
 
-            Réponse.question(rs);
+            Réponse.question(rs,nbquest);
 
             
 
             rs.close();
-            
-            stmt.execute("DELETE FROM questions");
-            
             stmt.close();
             conn.close();
             
