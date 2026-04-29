@@ -3,19 +3,20 @@ import java.util.Scanner;
 
 public class Réponse {
 
-    public static void question(ResultSet res) throws SQLException {
+    public static void question(ResultSet res, int nbquest) throws SQLException {
 
         Scanner sc = new Scanner(System.in);
+        
         String[] chapitres = new String[30]; 
         int[] scores = new int[30];
         int nbChapitres = 0;
+        int[] questchap = new int[30];
 
         while (res.next()) {
         	
         	String chapitre = res.getString("chapitre");
         	
             System.out.println("\nQuestion : " + res.getString("question"));
-           	String reponse;
            	System.out.print("Entrer votre réponse (A/B/C/D) : ");
            	
            	int index = -1;
@@ -29,11 +30,15 @@ public class Réponse {
             if (index == -1) {
                 chapitres[nbChapitres] = chapitre;
                 scores[nbChapitres] = 0;
+                questchap[nbChapitres] = 0;
                 index = nbChapitres;
                 nbChapitres++;
             }
+            String reponse;
+            
+            // Validation de la saisie
             do {
-            	reponse = sc.nextLine().toUpperCase();
+            	reponse = sc.nextLine().trim().toUpperCase();
             	if(!reponse.matches("[ABCD]")) {
             	
             		System.out.println("Entrer A, B, C, ou D");
@@ -42,18 +47,30 @@ public class Réponse {
             
             String bonneReponse = res.getString("reponse");
             
+            
+            // Vérification de la reponse
             if (reponse.equals(bonneReponse)) {
             	
     			System.out.println("✔ Correct !");
     			scores[index]++;
+    			questchap[index]++;
     			
     		} else {
     			System.out.println("❌ Faux ! Bonne réponse : " + bonneReponse);
+    			questchap[index]++;
     		}
         }
+        // Affichage des scores
+        int total = 0;
+        
         System.out.println("\nScores par chapitre :");
         for (int i = 0; i < nbChapitres; i++) {
-            System.out.println(chapitres[i] + " : " + scores[i]);
+            System.out.println(chapitres[i] + " : " + scores[i] + "/" + questchap[i]);
+            total += scores[i];
         }
+        
+        System.out.println("\nScore total : " + total + "/" + nbquest );
+        
+        sc.close();
     }
 }
