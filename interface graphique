@@ -1,0 +1,49 @@
+//Début interface graphique
+            
+            JFrame frame=new JFrame("QCM");
+            frame.setSize(500,500);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new FlowLayout());
+            
+            
+            CardLayout layout = new CardLayout();
+            JPanel container = new JPanel(layout);          
+            JPanel accueil=new JPanel();
+            JButton Debut=new JButton("Cliquez pour commencer le QCM de 40 questions !");
+            accueil.add(Debut);
+            
+            container.add(accueil);
+            
+            JPanel QCM=new JPanel();
+            QCM.setLayout(new BoxLayout(QCM, BoxLayout.Y_AXIS));
+            
+            
+            
+            
+           
+            
+            PreparedStatement ps = conn.prepareStatement("SELECT question FROM questions WHERE id = ?");
+            PreparedStatement repSQL = conn.prepareStatement("SELECT reponse FROM questions WHERE id = ?");
+            
+            ps.setInt(1, 1);
+            repSQL.setInt(1,1);
+            
+
+            ResultSet rs1 = ps.executeQuery();
+            ResultSet rep=repSQL.executeQuery();
+            
+            ResultSet reponse=rep;
+            String question = "";
+            String r1 = "A", r2 = "B", r3 = "C", r4 = "D";
+         
+            
+            JTextArea zoneQuestion = new JTextArea(question);
+            zoneQuestion.setLineWrap(true);
+            zoneQuestion.setWrapStyleWord(true);
+            zoneQuestion.setEditable(false);
+            QCM.add(zoneQuestion);
+            
+            
+    
+            
+            //Fin interface graphique
