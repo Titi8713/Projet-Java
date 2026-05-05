@@ -1,49 +1,96 @@
 //Début interface graphique
-            
-            JFrame frame=new JFrame("QCM");
-            frame.setSize(500,500);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLayout(new FlowLayout());
-            
-            
-            CardLayout layout = new CardLayout();
-            JPanel container = new JPanel(layout);          
-            JPanel accueil=new JPanel();
-            JButton Debut=new JButton("Cliquez pour commencer le QCM de 40 questions !");
-            accueil.add(Debut);
-            
-            container.add(accueil);
-            
-            JPanel QCM=new JPanel();
-            QCM.setLayout(new BoxLayout(QCM, BoxLayout.Y_AXIS));
-            
-            
-            
-            
-           
-            
-            PreparedStatement ps = conn.prepareStatement("SELECT question FROM questions WHERE id = ?");
-            PreparedStatement repSQL = conn.prepareStatement("SELECT reponse FROM questions WHERE id = ?");
-            
-            ps.setInt(1, 1);
-            repSQL.setInt(1,1);
-            
 
-            ResultSet rs1 = ps.executeQuery();
-            ResultSet rep=repSQL.executeQuery();
+
             
-            ResultSet reponse=rep;
-            String question = "";
-            String r1 = "A", r2 = "B", r3 = "C", r4 = "D";
-         
+            int points=0;
             
-            JTextArea zoneQuestion = new JTextArea(question);
-            zoneQuestion.setLineWrap(true);
-            zoneQuestion.setWrapStyleWord(true);
-            zoneQuestion.setEditable(false);
-            QCM.add(zoneQuestion);
+            JFrame frame = new JFrame("QCM");
+            frame.setSize(400, 300);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            CardLayout layout = new CardLayout();
+            JPanel container = new JPanel(layout);
+
             
+            JPanel accueil = new JPanel();
+            JButton debut = new JButton("Commencer le QCM");
+            accueil.add(debut);
+
             
-    
+            JPanel qcm = new JPanel();
+            qcm.setLayout(new BoxLayout(qcm, BoxLayout.Y_AXIS));
+
+            JLabel questionLabel = new JLabel("");
+            qcm.add(questionLabel);
+
+            JButton A = new JButton("A");
+            JButton B = new JButton("B");
+            JButton C = new JButton("C");
+            JButton D = new JButton("D");
+
+            qcm.add(A);
+            qcm.add(B);
+            qcm.add(C);
+            qcm.add(D);
+
+            
+            container.add(accueil, "ACCUEIL");
+            container.add(qcm, "QCM");
+
+            frame.add(container);
+
+            
+            int[] questionActuelle = {1};
+            String[] bonneReponse = {""};
+
+           
+            debut.addActionListener(e -> {
+                layout.show(container, "QCM");
+                afficherQuestion(questionActuelle[0], questionLabel, conn, bonneReponse);
+            });
+
+            // 🔹 Action commune boutons
+            ActionListener action = e -> {
+            	String choix = ((JButton)e.getSource()).getText();
+
+                if (choix.equals(bonneReponse[0])) {
+                    System.out.println("Bonne réponse !");
+                    points++;
+                } else {
+                    System.out.println("Mauvaise réponse !");
+                }
+
+                questionActuelle[0]++;
+                afficherQuestion(questionActuelle[0], questionLabel, conn, bonneReponse);
+            };
+
+            A.addActionListener(action);
+            B.addActionListener(action);
+            C.addActionListener(action);
+            D.addActionListener(action);
+
+            frame.setVisible(true);
             
             //Fin interface graphique
+// méthode pour l'interface graphique :
+
+public static void afficherQuestion(int id, JLabel label, Connection conn,String[] bonneReponse) {
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                "SELECT question FROM questions WHERE id = ?"
+            );
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                label.setText(rs.getString("question"));
+                bonneReponse[0] = rs.getString("reponse");
+            } else {
+                label.setText("Fin du QCM !");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
