@@ -1,11 +1,18 @@
 import java.sql.*;
+import javax.swing.*;
+import java.net.URI;
+import java.awt.*;
+import java.io.File;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
         String url = "jdbc:sqlite:projet.db";
-
+        String[] chapReviser = new String[0];
+        String [] chapReviser2 = new String[0];
+    	
         try {
 
             Connection conn = DriverManager.getConnection(url);
@@ -111,8 +118,7 @@ public class Main {
 
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM questions");
-
-            Réponse.question(rs,nbquest);
+            chapReviser = Réponse.question(rs, nbquest);
 
             
 
@@ -124,7 +130,181 @@ public class Main {
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
         }
+        
+        JFrame frame=new JFrame("Lecteur PDF");
+    	frame.setSize(900,900);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	frame.setLayout(new GridLayout(0,1));
+    	
+    	JLabel Bonjour = new JLabel("Bienvenue dans notre application ! Vous pouvez travailler sur les chapitres que vous voulez, mais nous vous recommendons les suivants : "  );
+    	for (String c : chapReviser) {
+            if (c != null) {
+                frame.add(new JLabel(" " + c));
+            }
+    	}
+    	
+    	frame.add(Bonjour);
+    	//frame.add(btnStart);
+    	
+    	if(0<1) {
+    		JLabel CompFonct=new JLabel("Composée de Fonctions ");
+    		frame.add(CompFonct);
+    	}
+        
+    	
+    	
+    	
+        JButton btnStart = new JButton("Lancer le QCM");
+        btnStart.addActionListener(e -> {
+    		try {
+                Connection conn = DriverManager.getConnection("jdbc:sqlite:projet.db");
+                Statement stmt = conn.createStatement();
+                ResultSet rs1 = stmt.executeQuery("SELECT * FROM questions");
+
+                chapReviser2 = Réponse.question(rs1, 32); // console
+
+                rs1.close();
+                stmt.close();
+                conn.close();
+                
+                frame.getContentPane().removeAll();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }); 
+        
+        /*File file = new File("C:\\Users\\benjo\\Documents\\TP1 niveau 1.pdf");
+    	File Dénombrement = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\Dénombrement.pdf");
+    	File CalculIntegral = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\CalculIntegral.pdf");
+    	File CalculVectoriel= new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\ComposéeFonctions.pdf");
+    	File ComposéeFonctions = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\ComposéeFonctions.pdf");
+    	File Continuite = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\Continuite.pdf");
+    	File Convexite = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\Convexite.pdf");
+    	File DeriveeSeconde = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\DeriveeSeconde.pdf");
+    	File EquaDiff = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\EquaDiff.pdf");
+    	File EquationCartesienne = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\EquationCartesienne.pdf");
+    	File FonctionsTrigo = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\FonctionsTrigo.pdf");
+    	File GrandsNombres = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\GrandsNombres.pdf");
+    	File Integration = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\Integration.pdf");
+    	File LimitesFonctions = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\LimitesFonctions.pdf");*/
+    	File LimiteSuite = new File("https://www.maths-et-tiques.fr/telech/20SuitesTS1.pdf");
+    	/*File Logarithmes = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\Logarithmes.pdf");
+    	File LoiBinomiale = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\LoiBinomiale.pdf");
+    	File ProduitScalaire = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\ProduitScalaire.pdf");
+    	File RepresentationParametrique = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\RepresentationParametrique.pdf");
+    	File SchemaBernouilli = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\SchemaBernouilli.pdf");
+    	File VariablesAleatoires = new File("C:\\Users\\benjo\\Desktop\\CPI1-Semestre 2\\Projet JAVA\\VariablesAleatoires.pdf");*/
+    	
+        
+    	
+    	
+    	JButton btn2=new JButton("Ouvrir le cours sur le Dénombrement");
+    	/*btn2.addActionListener(e -> ouvrirPDF(Dénombrement));  	
+    	JButton btnCalculIntegral = new JButton("Ouvrir le cours sur le Calcul Intégral");
+    	btnCalculIntegral.addActionListener(e -> ouvrirPDF(CalculIntegral));
+    	JButton btnCalculVectoriel = new JButton("Ouvrir le cours sur le Calcul Vectoriel");
+    	btnCalculVectoriel.addActionListener(e -> ouvrirPDF(CalculVectoriel));
+    	JButton btnComposeeFonctions = new JButton("Ouvrir le cours sur les Fonctions Composées");
+    	btnComposeeFonctions.addActionListener(e -> ouvrirPDF(ComposéeFonctions));
+    	JButton btnContinuite = new JButton("Ouvrir le cours sur la Continuité");
+    	btnContinuite.addActionListener(e -> ouvrirPDF(Continuite));
+    	JButton btnConvexite = new JButton("Ouvrir le cours sur la Convexité");
+    	btnConvexite.addActionListener(e -> ouvrirPDF(Convexite));
+    	JButton btnDeriveeSeconde = new JButton("Ouvrir le cours sur la Dérivée Seconde");
+    	btnDeriveeSeconde.addActionListener(e -> ouvrirPDF(DeriveeSeconde));
+    	JButton btnEquaDiff = new JButton("Ouvrir le cours sur les Équations Différentielles");
+    	btnEquaDiff.addActionListener(e -> ouvrirPDF(EquaDiff));
+    	JButton btnEquationCartesienne = new JButton("Ouvrir le cours sur l'Équation Cartésienne");
+    	btnEquationCartesienne.addActionListener(e -> ouvrirPDF(EquationCartesienne));
+    	JButton btnFonctionsTrigo = new JButton("Ouvrir le cours sur les Fonctions Trigonométriques");
+    	btnFonctionsTrigo.addActionListener(e -> ouvrirPDF(FonctionsTrigo));
+    	JButton btnGrandsNombres = new JButton("Ouvrir le cours sur les Grands Nombres");
+    	btnGrandsNombres.addActionListener(e -> ouvrirPDF(GrandsNombres));
+    	JButton btnIntegration = new JButton("Ouvrir le cours sur l'Intégration");
+    	btnIntegration.addActionListener(e -> ouvrirPDF(Integration));
+    	JButton btnLimitesFonctions = new JButton("Ouvrir le cours sur les Limites de Fonctions");
+    	btnLimitesFonctions.addActionListener(e -> ouvrirPDF(LimitesFonctions));*/
+    	JButton btnLimiteSuite = new JButton("Ouvrir le cours sur les Limites de Suites");
+    	btnLimiteSuite.addActionListener(e -> ouvrirPDF("https://maths-et-tiques.fr/telech/20SuitesTS1.pdf"));
+    	/*JButton btnLogarithmes = new JButton("Ouvrir le cours sur les Logarithmes");
+    	btnLogarithmes.addActionListener(e -> ouvrirPDF(Logarithmes));
+    	JButton btnLoiBinomiale = new JButton("Ouvrir le cours sur la Loi Binomiale");
+    	btnLoiBinomiale.addActionListener(e -> ouvrirPDF(LoiBinomiale));
+    	JButton btnProduitScalaire = new JButton("Ouvrir le cours sur le Produit Scalaire");
+    	btnProduitScalaire.addActionListener(e -> ouvrirPDF(ProduitScalaire));
+    	JButton btnRepresentationParam = new JButton("Ouvrir le cours sur la Représentation Paramétrique");
+    	btnRepresentationParam.addActionListener(e -> ouvrirPDF(RepresentationParametrique));
+    	JButton btnSchemaBernoulli = new JButton("Ouvrir le cours sur le Schéma de Bernoulli");
+    	btnSchemaBernoulli.addActionListener(e -> ouvrirPDF(SchemaBernouilli));
+    	JButton btnVariablesAleatoires = new JButton("Ouvrir le cours sur les Variables Aléatoires");
+    	btnVariablesAleatoires.addActionListener(e -> ouvrirPDF(VariablesAleatoires));	*/
+    
+    	
+    	JLabel Bonjour2 = new JLabel("Bienvenue dans notre application ! Vous pouvez travailler sur les chapitres que vous voulez, mais nous vous recommendons les suivants : "  );
+    	for (String c : chapReviser2) {
+            if (c != null) {
+                frame.add(new JLabel(" " + c));
+            }
+    	}
+    	
+    	frame.add(Bonjour2);
+    	//frame.add(btnStart);
+    	
+    	if(0<1) {
+    		JLabel CompFonct=new JLabel("Composée de Fonctions ");
+    		frame.add(CompFonct);
+    	}
+    	
+    	
+
+    	
+    	//frame.add(btnStart);
+    	
+    	//Boutons ajoutés : 
+    	frame.add(btn2);
+    	/*frame.add(btnComposeeFonctions);
+    	frame.add(btnCalculIntegral);
+    	frame.add(btnCalculVectoriel);
+    	frame.add(btnComposeeFonctions);
+    	frame.add(btnContinuite);
+    	frame.add(btnConvexite);
+    	frame.add(btnDeriveeSeconde);
+    	frame.add(btnEquaDiff);
+    	frame.add(btnEquationCartesienne);
+    	frame.add(btnFonctionsTrigo);
+    	frame.add(btnGrandsNombres);
+    	frame.add(btnIntegration);
+    	frame.add(btnLimitesFonctions);*/
+    	frame.add(btnLimiteSuite);
+    	/*frame.add(btnLogarithmes);
+    	frame.add(btnLoiBinomiale);
+    	frame.add(btnProduitScalaire);
+    	frame.add(btnRepresentationParam);
+    	frame.add(btnSchemaBernoulli);
+    	frame.add(btnVariablesAleatoires);*/
+    	
+    	frame.setVisible(true);
+    	
+
+    	
     }
+    
+    public static void ouvrirPDF(String cheminOuUrl) {
+        try {
+            
+        	if (cheminOuUrl.startsWith("http")) {
+                Desktop.getDesktop().browse(new URI(cheminOuUrl));
+            }  else {
+                    System.out.println("Fichier introuvable : " + cheminOuUrl);
+                }
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
 
 
