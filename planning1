@@ -1,136 +1,62 @@
 Phase 1 — Conception 
-Semaine 1 : Définir le projet
+Séance 1 : Définir le projet
 
 
-définir les fonctionnalités principales
+-définir les fonctionnalités principales
+-comment va fonctionner l'application
+-ce qu'on pourrait ajouter si avance
 
-définir les chapitres de maths :
-
-
-
-
-rédiger cahier des charges
-
-créer structure des classes principales
+-définir les chapitres de maths
+-créer structure des classes principales
+-préparer les questions QCM
+-associer chaque question à une notion de cours
 
 
+Phase 2 — Développement concret Java 
+Séance 2 : Gestion du QCM
 
-préparer les questions QCM
-
-associer chaque question à une notion de cours
-
-
-
-
-
-
-Phase 2 — Développement coeur Java 
-Semaine 2 : Gestion du QCM
+-classe Question
+-classe Réponse
+-affichage QCM dans la console
+-lecture des réponses utilisateur
+-score par catégorie
 
 
 
-
-classe Question
-
-classe Réponse
-
-affichage QCM
-
-
-
-
-lecture des réponses utilisateur
-
-score par catégorie
-
-
-
-
-Semaine 3 : Analyse des erreurs
-
-
-système de détection des lacunes
-
-
-tableau correspondance erreurs → cours
+Séance 3 : Analyse des erreurs
+-système de détection des lacunes
+-tableau correspondance erreurs / cours
 
 
 
 
 Phase 3 — Base de données de cours 
-Semaine 4
+Séance 4
 
+-Créer stockage des cours + fonctionnement concret dans  Java
+-Associer 
+  -chaque niveau
+  -chaque notion
 
-Créer stockage des cours 
-
-
-Associer 
-
-chaque niveau
-
-chaque notion
-
-
-
-
-
-Phase 4 — Interface utilisateur 
-Semaine 5
-
-
-
-
-écran QCM
-
-
-écran résultats
-
-
-
+Phase 4 — Interface graphique 
+Séance 5
+-écran QCM
+-écran résultats
 
 Phase 5 — Tests et amélioration 
-Semaine 6
+Séance 6
+
+-tester erreurs
+-tester réponses 
+-tester affichage
+-correction bugs
+-optimisation code
 
 
-tester erreurs
+Phase 6 — Préparation soutenance + travail à rendre
+Dernière séance
 
-tester réponses 
+-documentation technique
+-préparation présentation orale
+-démonstration projet (vidéo)
 
-tester affichage
-
-
-
-correction bugs
-
-optimisation code
-
-
-Phase 6 — Finalisation soutenance 
-Dernière semaine
-
-
-documentation technique
-
-
-
-préparation présentation orale
-
-
-démonstration projet
-
-
-
-
-logique Java
-
-algorithmes
-
-analyse réponses
-
-
-
-QCM
-
-cours
-
-interface
