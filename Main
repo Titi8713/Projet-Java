@@ -137,20 +137,20 @@ public class Main {
         JFrame frame=new JFrame("Lecteur PDF");
     	frame.setSize(2000,1000);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	frame.setLayout(new GridLayout(15,0));
+    	frame.setLayout(new GridLayout(23,0));
     	
     	JPanel panelRevisions = new JPanel();
-    	panelRevisions.setLayout(new GridLayout(15,0));
+    	panelRevisions.setLayout(new GridLayout(1,0));
     	
     	
-    	panelRevisions.add(new JLabel("Bienvenue dans notre application ! Vous pouvez travailler sur les chapitres que vous voulez, mais nous vous recommendons les suivants : " ) );
+    	panelRevisions.add(new JLabel("Chapitres à réviser :" ) );
     	for (String c : chapReviser) {
             if (c != null) {
                 panelRevisions.add(new JLabel(" " + c));
             }
     	}
     	
-    	//panelRevisions.add(Bonjour);
+    	
         
     	
     	
@@ -164,8 +164,11 @@ public class Main {
                 Connection conn = DriverManager.getConnection("jdbc:sqlite:projet.db");
                 Statement stmt = conn.createStatement();
                 ResultSet rs1 = stmt.executeQuery("SELECT * FROM questions");
+                
+                ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions");
+                int nbquest = count.getInt(1);
 
-                String[] chapReviser2 = Réponse.question(rs1, 32); // console
+                String[] chapReviser2 = Réponse.question(rs1, nbquest); // console
 
                 rs1.close();
                 stmt.close();
@@ -180,7 +183,7 @@ public class Main {
                 for (String c : chapReviser2) {
                     if (c != null) {
                     	panelRevisions.add(
-                    		new JLabel(" " + c )
+                    		new JLabel("\n" + c )
                     	);
                     }
                 }
@@ -194,6 +197,38 @@ public class Main {
                 ex.printStackTrace();
             }
         }); 
+        
+        JButton btnFinal = new JButton("Lancer le QCM final");
+        btnFinal.addActionListener(e -> {
+    		try {
+    			
+    			//Résultats du QCM final
+    			
+                Connection conn = DriverManager.getConnection("jdbc:sqlite:projet.db");
+                Statement stmt = conn.createStatement();
+                ResultSet rs2 = stmt.executeQuery("SELECT * FROM questions WHERE difficulte = 1");
+                
+                ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions where difficulte = 1");
+                int nbquest = count.getInt(1);
+
+                Réponse.question(rs2, nbquest);
+                
+
+                rs2.close();
+                stmt.close();
+                conn.close();
+                
+                panelRevisions.removeAll();
+                panelRevisions.add(new JLabel("Merci d'avoir choisit notre application !!!"));
+                
+                panelRevisions.revalidate();
+                panelRevisions.repaint();
+    		}
+    		catch (Exception ex) {
+            ex.printStackTrace();
+    		}
+        });
+                
         
         frame.add(panelRevisions);
         
@@ -267,6 +302,7 @@ public class Main {
 
     	//Affichage des boutons 
     	frame.add(btnStart);
+    	frame.add(btnFinal);
     	 
     	frame.add(btn2);
     	frame.add(btnComposeeFonctions);
@@ -307,14 +343,6 @@ public class Main {
     }
     
 }
-
-
-
-
-
-
-
-
 
 
 
