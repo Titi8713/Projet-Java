@@ -1,13 +1,11 @@
 import java.sql.*;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Réponse {
 
     public static String[] question(ResultSet res, int nbquest) throws SQLException {
 
-        Scanner sc = new Scanner(System.in);
-        
-        String[] chapitres = new String[30]; 
+        String[] chapitres = new String[30];
         int[] scores = new int[30];
         int nbChapitres = 0;
         int[] questchap = new int[30];
@@ -15,20 +13,20 @@ public class Réponse {
         int nbReviser = 0;
 
         while (res.next()) {
-        	
-        	String chapitre = res.getString("chapitre");
-        	
-            System.out.println("\nQuestion : " + res.getString("question"));
-           	System.out.print("Entrer votre réponse (A/B/C/D) : ");
-           	
-           	int index = -1;
+
+            String chapitre = res.getString("chapitre");
+
+            String question = res.getString("question");
+
+            int index = -1;
+
             for (int i = 0; i < nbChapitres; i++) {
                 if (chapitres[i].equals(chapitre)) {
                     index = i;
                     break;
                 }
             }
-            
+
             if (index == -1) {
                 chapitres[nbChapitres] = chapitre;
                 scores[nbChapitres] = 0;
@@ -36,57 +34,86 @@ public class Réponse {
                 index = nbChapitres;
                 nbChapitres++;
             }
+
             String reponse;
-            
+
             // Validation de la saisie
             do {
-            	reponse = sc.nextLine().trim().toUpperCase();
-            	if(!reponse.matches("[ABCD]")) {
-            	
-            		System.out.println("Entrer A, B, C, ou D");
-            	}
-            } while(!reponse.matches("[ABCD]"));
-            
+
+                reponse = JOptionPane.showInputDialog(
+                    null,
+                    question + "\n\nEntrer A, B, C ou D :"
+                );
+
+                
+                if (reponse == null) {
+                    return new String[] { "QCM annulé" };
+                }
+
+                reponse = reponse.trim().toUpperCase();
+
+                if (!reponse.matches("[ABCD]")) {
+
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Veuillez entrer uniquement A, B, C ou D"
+                    );
+                }
+
+            } while (!reponse.matches("[ABCD]"));
+
             String bonneReponse = res.getString("reponse");
-            
-            
-            // Vérification de la reponse
+
+            //Vérification de la réponse
             if (reponse.equals(bonneReponse)) {
             	
-    			System.out.println("✔ Correct !");
-    			scores[index]++;
-    			questchap[index]++;
-    			
-    		} else {
-    			System.out.println("❌ Faux ! Bonne réponse : " + bonneReponse);
-    			questchap[index]++;
-    		}
+            	//Affichage mini fenêtre
+                JOptionPane.showMessageDialog(
+                    null,
+                    "✔ Correct !"
+                );
+
+                scores[index]++;
+                questchap[index]++;
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                    null,
+                    "❌ Faux ! Bonne réponse : " + bonneReponse
+                );
+
+                questchap[index]++;
+            }
         }
-        // Affichage des scores
+
+        //Calcul score total
         int total = 0;
-        
-        System.out.println("\nScores par chapitre :");
+
+        String messageScores = "Scores par chapitre :\n\n";
+
         for (int i = 0; i < nbChapitres; i++) {
-            System.out.println(chapitres[i] + " : " + scores[i] + "/" + questchap[i]);
+
+            messageScores += chapitres[i] + " : " + scores[i] + "/" + questchap[i] + "\n";
+
             total += scores[i];
-        } 
+        }
+
+        messageScores += "\nScore total : " + total + "/" + nbquest;
         
-        System.out.println("\nScore total : " + total + "/" + nbquest );
-        
-       
-        
-        System.out.println("Nous vous conseillons de réviser les chapitres suivants : ");
+        //Nouvelle mini fenêtre avec le score par chapitre et le total
+        JOptionPane.showMessageDialog(null, messageScores);
+
+        //Chapitres à réviser si score < à la moitié
         for (int i = 0; i < nbChapitres; i++) {
-        	if(2*scores[i] < questchap[i] ) {
-        		System.out.println(chapitres[i]);
-        		aReviser[nbReviser] = chapitres[i];
-        		nbReviser ++;
-        	}
-       	}
-        
-        
-        sc.close();
-        
+
+            if (2 * scores[i] < questchap[i]) {
+
+                aReviser[nbReviser] = chapitres[i];
+                nbReviser++;
+            }
+        }
+
         if (nbReviser == 0) {
             return new String[] { "Aucun chapitre à réviser" };
         }
@@ -98,6 +125,5 @@ public class Réponse {
         }
 
         return resultat;
-    
     }
 }
