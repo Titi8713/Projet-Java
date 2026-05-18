@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) throws URISyntaxException {
 
         String url = "jdbc:sqlite:projet.db";
-        String[] chapReviser = new String[0];
         try {
 
             Connection conn = DriverManager.getConnection(url);
@@ -107,26 +106,7 @@ public class Main {
             stmt.execute(sqlCreate);
             stmt.execute(sqlInsert);
             
-            
-            ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions where difficulte = 0");
-            int nbquest = count.getInt(1);
-            
-            if (count.next()) {
-                System.out.println("Nombre de questions : " + nbquest);
-            }
-            count.close();
-
-            //Resultats du premier QCM
-            
-            ResultSet rs = stmt.executeQuery("SELECT * FROM questions WHERE difficulte = 0");
-            chapReviser = Réponse.question(rs, nbquest);
-
-            
-
-            rs.close();
-            stmt.close();
-            conn.close();
-            
+         
 
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
@@ -142,18 +122,8 @@ public class Main {
     	JPanel panelRevisions = new JPanel();
     	panelRevisions.setLayout(new GridLayout(1,0));
     	
-    	
-    	panelRevisions.add(new JLabel("Chapitres à réviser :" ) );
-    	for (String c : chapReviser) {
-            if (c != null) {
-                panelRevisions.add(new JLabel(" " + c));
-            }
-    	}
-    	
-    	
-        
-    	
-    	
+    	panelRevisions.add(new JLabel("Bonjour, bienvenue sur notre application MATHSPARK"));
+    
     	
         JButton btnStart = new JButton("Lancer le QCM");
         btnStart.addActionListener(e -> {
@@ -163,13 +133,24 @@ public class Main {
     			
                 Connection conn = DriverManager.getConnection("jdbc:sqlite:projet.db");
                 Statement stmt = conn.createStatement();
-                ResultSet rs1 = stmt.executeQuery("SELECT * FROM questions");
                 
-                ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions");
+                ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions where difficulte = 0");
                 int nbquest = count.getInt(1);
 
+                
+                
+                if (count.next()) {
+                    System.out.println("Nombre de questions : " + nbquest);
+                }
+                count.close();
+                
+                
+                
+                //Resultats du premier QCM
+                ResultSet rs1 = stmt.executeQuery("SELECT * FROM questions where difficulte = 0");
+                
                 String[] chapReviser2 = Réponse.question(rs1, nbquest); // console
-
+               
                 rs1.close();
                 stmt.close();
                 conn.close();
@@ -206,20 +187,21 @@ public class Main {
     			
                 Connection conn = DriverManager.getConnection("jdbc:sqlite:projet.db");
                 Statement stmt = conn.createStatement();
-                ResultSet rs2 = stmt.executeQuery("SELECT * FROM questions WHERE difficulte = 1");
                 
                 ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM questions where difficulte = 1");
                 int nbquest = count.getInt(1);
 
-                Réponse.question(rs2, nbquest);
+                count.close();
                 
-
+                ResultSet rs2 = stmt.executeQuery("SELECT * FROM questions WHERE difficulte = 1");
+                
+                Réponse.question(rs2, nbquest);
                 rs2.close();
                 stmt.close();
                 conn.close();
                 
                 panelRevisions.removeAll();
-                panelRevisions.add(new JLabel("Merci d'avoir choisit notre application !!!"));
+                panelRevisions.add(new JLabel("Merci d'avoir choisi notre application !!!"));
                 
                 panelRevisions.revalidate();
                 panelRevisions.repaint();
