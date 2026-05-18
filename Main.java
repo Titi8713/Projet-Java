@@ -28,77 +28,54 @@ public class Main {
             //Insertions des questions
             String sqlInsert =
             	    "INSERT OR IGNORE INTO questions(question,reponse,difficulte,chapitre) VALUES " +
-            	    		// DÉNOMBREMENT
-            	    		"('Combien de façons de choisir 2 élèves parmi 5 ? \nA: 10  B: 5  C: 20  D: 15', 'A', 0, 'Dénombrement'),"+
+            	    		
+            	    		// PROBABILITÉS
+            	    		"('Combien de façons de choisir 3 élèves parmi 6 ? A: 10 B: 15 C: 20 D: 18', 'C', 0, 'Probabilités')," +
+            	    		"('Dans un schéma de Bernoulli, que représente p ? A: probabilité de succès B: nombre d’essais C: issue D: moyenne', 'A', 1, 'Probabilités')," +
+            	    		"('Dans une loi binomiale, que calcule-t-on ? A: variance B: nombre de succès C: somme D: limite', 'B', 2, 'Probabilités')," +
+            	    		"('Une variable aléatoire est : A: matrice B: fonction C: événement D: nombre réel aléatoire', 'D', 3, 'Probabilités')," +
+            	    		"('Que dit la loi des grands nombres ? A: divergence B: stabilité parfaite C: convergence D: oscillation', 'C', 3, 'Probabilités')," +
+            	    		"('Nombre de suites possibles de 3 lancers de pièce : A: 6 B: 8 C: 4 D: 9', 'B', 0, 'Probabilités')," +
 
-            	    		"('Combien d’anagrammes du mot ABCD ? A: 12  B: 24  C: 6  D: 48', 'B', 1, 'Dénombrement'),"+
+            	    		// VECTEURS & PRODUIT SCALAIRE
+            	    		"('Un vecteur représente : A: un point B: une direction et une norme C: une droite D: un nombre', 'B', 0, 'Vecteurs & Produit scalaire')," +
+            	    		"('Produit scalaire de vecteurs orthogonaux : A: -1 B: 1 C: 0 D: dépend', 'C', 1, 'Vecteurs & Produit scalaire')," +
+            	    		"('Condition de colinéarité : A: égalité B: orthogonalité C: proportionnalité D: produit nul', 'C', 2, 'Vecteurs & Produit scalaire')," +
+            	    		"('Norme d’un vecteur : A: longueur B: angle C: volume D: surface', 'A', 1, 'Vecteurs & Produit scalaire')," +
+            	    		"('Formule du produit scalaire : A: u+v B: u×v C: ||u||·||v||·cosθ D: u−v', 'C', 0, 'Vecteurs & Produit scalaire')," +
+            	    		"('Vecteur nul est : A: infini B: longueur nulle C: unité D: direction', 'B', 3, 'Vecteurs & Produit scalaire')," +
 
-            	    		"('Combien de codes à 3 chiffres avec répétition ? A: 900  B: 720  C: 1000  D: 100', 'C', 2, 'Dénombrement'),"+
-
-            	    		"('Combien de façons de choisir 3 personnes parmi 10 avec ordre ? A: 120  B: 720  C: 60  D: 30', 'B', 3, 'Dénombrement'),"+
-
-            	    		// VECTEURS
-            	    		"('Qu''est-ce qu''un vecteur ? A: Une position  B: Une direction + norme  C: Une droite  D: Un point', 'B', 0, 'Vecteurs'),"+
-
-            	    		"('Condition de colinéarité ? A: Produit nul  B: Vecteurs proportionnels  C: Orthogonaux  D: Égaux', 'B', 1, 'Vecteurs'),"+
-
-            	    		"('Condition d''indépendance linéaire ? A: Tous égaux  B: Aucun vecteur combinaison des autres  C: Colinéaires  D: Orthogonaux', 'B', 2, 'Vecteurs'),"+
-
-            	    		"('Comment définir un plan ? A: 1 vecteur  B: 1 point  C: 2 vecteurs non colinéaires  D: 3 vecteurs colinéaires', 'C', 3, 'Vecteurs'),"+
-
-            	    		// PRODUIT SCALAIRE
-            	    		"('Produit scalaire de deux vecteurs orthogonaux ? A: 1  B: 0  C: -1  D: infini', 'B', 0, 'Produit scalaire'),"+
-
-            	    		"('Formule du produit scalaire ? A: u+v  B: ||u|| ||v|| cos(theta)  C: u×v  D: u-v', 'B', 1, 'Produit scalaire'),"+
-
-            	    		"('Condition d''orthogonalité ? A: Produit scalaire = 0  B: Norme nulle  C: Somme nulle  D: Produit = 1', 'A', 2, 'Produit scalaire'),"+
-
-            	    		"('Vecteur normal à un plan ? A: Somme  B: Différence  C: Produit vectoriel  D: Projection', 'C', 3, 'Produit scalaire'),"+
-
-            	    		// DROITE
-            	    		"('Forme paramétrique d''une droite ? A: ax+by+c=0  B: r = a + t u  C: y=ax²  D: x=y', 'B', 0, 'Droite'),"+
-
-            	    		"('Que représente t ? A: Une constante  B: Paramètre réel  C: Une norme  D: Une direction', 'B', 1, 'Droite'),"+
-
-            	    		"('Comment obtenir un point sur une droite ? A: Fixer t  B: Dériver  C: Intégrer  D: Multiplier', 'A', 2, 'Droite'),"+
-
-            	    		"('Appartenance à une droite ? A: Dériver  B: Résoudre pour t  C: Multiplier  D: Additionner', 'B', 3, 'Droite'),"+
-
-            	    		// PLAN
-            	    		"('Forme générale d''un plan ? A: y=ax+b  B: ax+by+cz+d=0  C: x²+y²=1  D: r=a+tu', 'B', 0, 'Plan'),"+
-
-            	    		"('Que représente (a,b,c) ? A: Un point  B: Un vecteur normal  C: Une direction  D: Une norme', 'B', 1, 'Plan'),"+
-
-            	    		"('Comment déterminer un plan avec 3 points ? A: Dériver  B: Résoudre un système  C: Multiplier  D: Intégrer', 'B', 2, 'Plan'),"+
-
-            	    		"('Condition d''appartenance à un plan ? A: Norme nulle  B: Vérifier l''équation  C: Multiplier  D: Dériver', 'B', 3, 'Plan'),"+
-
-            	    		// SUITES
-            	    		"('Limite de 1/n ? A: 1  B: 0  C: +∞  D: -1', 'B', 0, 'Suites'),"+
-
-            	    		"('Théorème des gendarmes ? A: Produit  B: Encadrement ⇒ même limite  C: Somme  D: Division', 'B', 1, 'Suites'),"+
-
-            	    		"('Limite d''une somme de suites ? A: Produit  B: Somme des limites  C: Différence  D: Max', 'B', 2, 'Suites'),"+
-
-            	    		"('Exemple de suite divergente ? A: 1/n  B: n  C: 1/n²  D: constante', 'B', 3, 'Suites'),"+
+            	    		// GÉOMÉTRIE ESPACE
+            	    		"('Droite paramétrique : A: r=a+tu B: ax+by+c=0 C: x²+y²=1 D: y=ax²', 'A', 0, 'Géométrie espace')," +
+            	    		"('Vecteur normal à un plan : A: parallèle B: perpendiculaire C: tangent D: nul', 'B', 1, 'Géométrie espace')," +
+            	    		"('Équation d’un plan : A: y=ax+b B: ax+by+cz+d=0 C: r=a+tu D: x²+y²=1', 'B', 2, 'Géométrie espace')," +
+            	    		"('Appartenance à une droite : A: dérivation B: substitution C: intégration D: limite', 'B', 1, 'Géométrie espace')," +
+            	    		"('Intersection droite-plan : A: toujours vide B: point ou droite C: cercle D: parallèle', 'B', 3, 'Géométrie espace')," +
+            	    		"('Vecteur directeur : A: scalaire B: direction C: norme D: angle', 'B', 0, 'Géométrie espace')," +
 
             	    		// LIMITES
-            	    		"('Limite d''une constante ? A: 0  B: Elle-même  C: +∞  D: -∞', 'B', 0, 'Limites'),"+
-
-            	    		"('Asymptote verticale ? A: Limite nulle  B: Limite infinie  C: Produit nul  D: Somme nulle', 'B', 1, 'Limites'),"+
-
-            	    		"('Limite d''un quotient ? A: Produit  B: Quotient des limites  C: Somme  D: Différence', 'B', 2, 'Limites'),"+
-
-            	    		"('Asymptote oblique ? A: Dérivation  B: Division polynomiale  C: Intégrale  D: Limite nulle', 'B', 3, 'Limites'),"+
+            	    		"('Limite de 1/n : A: 1 B: ∞ C: 0 D: -1', 'C', 0, 'Limites')," +
+            	    		"('Continuité signifie : A: saut B: rupture C: pas de saut D: constante', 'C', 1, 'Limites')," +
+            	    		"('Limite d’un quotient : A: somme B: différence C: quotient D: produit', 'C', 2, 'Limites')," +
+            	    		"('Logarithme de 1 : A: 1 B: 0 C: -1 D: ∞', 'B', 0, 'Limites')," +
+            	    		"('Limite infinie signifie : A: stabilité B: divergence C: oscillation D: nullité', 'B', 3, 'Limites')," +
+            	    		"('Limite d’une fonction continue : A: valeur différente B: égale valeur C: infinie D: nulle', 'B', 1, 'Limites')," +
 
             	    		// DÉRIVATION
-            	    		"('Définition de f∘g ? A: f+g  B: f(g(x))  C: f×g  D: f-g', 'B', 0, 'Dérivation'),"+
+            	    		"('Dérivée de f(g(x)) : A: f'(g(x))g'(x) B: f+g C: f×g D: g', 'A', 2, 'Dérivation')," +
+            	    		"('Fonction composée : A: f(g(x)) B: f+g C: f×g D: f−g', 'A', 0, 'Dérivation')," +
+            	    		"('Dérivée seconde : A: vitesse B: accélération C: limite D: aire', 'B', 1, 'Dérivation')," +
+            	    		"('Convexité : A: courbure B: constante C: droite D: rupture', 'A', 2, 'Dérivation')," +
+            	    		"('Si f''>0 alors : A: concave B: convexe C: linéaire D: constante', 'B', 3, 'Dérivation')," +
+            	    		"('Rôle de la dérivée : A: aire B: pente C: volume D: distance', 'B', 0, 'Dérivation')," +
 
-            	    		"('Dérivée de f(g(x)) ? A: f''(x)  B: f''(g(x))·g''(x)  C: g''(x)  D: f(x)', 'B', 1, 'Dérivation'),"+
-
-            	    		"('Exemple de composition ? A: x²  B: sin(x²)  C: x+1  D: x', 'B', 2, 'Dérivation')," +
-            	    		
-            	    		"('Erreur fréquente ? A: Multiplier  B: Oublier la règle de chaîne  C: Diviser  D: Additionner', 'B', 3, 'Dérivation')";
+            	    		//FONCTIONS
+            	    		"('Continuité signifie : A: pas de rupture B: saut C: dérivable D: constante', 'A', 1, 'Fonctions')," +
+            	    		"('Logarithme de ab : A: produit B: somme C: différence D: quotient', 'B', 2, 'Fonctions')," +
+            	    		"('sin(0) = ? A: 0 B: 1 C: π D: -1', 'A', 0, 'Fonctions')," +
+            	    		"('cos(0) = ? A: 0 B: 1 C: -1 D: π', 'B', 0, 'Fonctions')," +
+            	    		"('Fonction trigonométrique : A: polynôme B: linéaire C: sin D: constante', 'C', 1, 'Fonctions')," +
+            	    		"('ln(e) = ? A: 1 B: 0 C: e D: -1', 'A', 0, 'Fonctions')";
             		
             
             stmt.execute("DROP TABLE IF EXISTS questions");
@@ -325,7 +302,6 @@ public class Main {
     }
     
 }
-
 
 
 
