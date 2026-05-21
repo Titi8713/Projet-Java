@@ -1,0 +1,42 @@
+Fiche technique
+
+
+Le programme MATHSPARK est une application Java de QCM de mathématiques qui permet de générer des questionnaires à partir d’une base de données SQLite, de faire passer un QCM interactif à l’utilisateur tout en corrigeant automatiquement ses réponses pour identifier les chapitres que l’utilisateur doit retravailler  pour le rediriger vers les cours PDF associés. 
+
+Le projet est composé de deux classes :
+	-La classe Main qui gère la base de données SQLite, l’interface graphique swing, les boutons interactif, le lancement des QCM et l’ouverture des cours PDF.
+
+	-La classe Réponse qui gère l’affichage des questions, la saisie de l’utilisateur avec la correction des réponses, le calcul des scores et la génération des chapitres à réviser.
+
+La technologie utilisée pour la base de données est SQLite via JDBC, qui est importé par la librairie « java.sql.* », notamment grâce à la connexion : 
+« Connection conn = DriverManager.getConnection(‘jdbc :sqlite :projet.db’) ; »
+Cela permet de lier la base de données avec le code Java.
+
+Pour l’affichage des différents boutons ainsi que pour l’affichage des différents chapitres à réviser nous avons utilisé l’interface Swing importé par la librairie « javax.swing.* ». 
+-JFrame crée la fenêtre principale 
+-JPanel gère la zone d’affichage dynamique 
+-JButton interagie avec l’utilisateur grâce aux différents bouttons
+-JLabel affiche le texte
+-JOptionPane gère les interactions liées aux QCM
+
+La classe réponse gère toute la logique du QCM 
+« while (res.next()) » permet la lecture des questions
+« JOptionPane.showInputDialog(...) » permet la saisie de l’utilisateur puis nous contrôlons si la réponse envoyée est bien valide c’est-à-dire A, B, C ou D en majuscule ou minuscule. En cas de toute autre saisie le programme redemande la saisie parmi les choix possibles.
+Le programme fait ensuite la correction de la réponse donnée. Si elle est correct  le score du chapitre est augmenté avec un message validant la réponse, sinon la bonne réponse est affichée.
+« Int[] scores » calcul le score obtenu par chapitre
+« Int[] questchap » calcul le nombre de questions par chapitre
+Ces deux tableaux d’entier nous permettent ensuite de détecter les chapitres dont l’utilisateur a des lacunes.
+Cette classe renvoie finalement tous les chapitres dont il est fortement conseillés de réviser
+Nous considérons un chapitre non acquis pour un score inférieur à 50%
+
+La fonction « Desktop.getDesktop().browse(nomFichier); » permet d’ouvrir un lien internet dans le navigateur de l’ordinateur. On peut utiliser cette fonction grâce à l’importation de la librairie « java.net.URI » et de la librairie « java.net.URISyntaxException » qui gère les erreurs de syntaxe des URI.
+
+Grâce à ces trois fonctions : « panelRevisions.removeAll() », « panelRevisions.revalidate() » et « panelRevisions.repaint() » le tableau des scores est reconstruit après chaque QCM.
+
+L’application MATHSPARK repose sur une construction simple et structurée qui comprend :
+-Une base SQLite pour les données
+-Une interface Swing pour l’utilisateur
+-Une classe dédiée à la logique de correction 
+-Un système de chapitres pour personnaliser la révision
+Cette application permet donc de transformer un QCM en outil d’apprentissage interactif.
+
