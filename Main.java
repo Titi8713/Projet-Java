@@ -27,55 +27,81 @@ public class Main {
             
             //Insertions des questions
             String sqlInsert =
-            	    "INSERT OR IGNORE INTO questions(question,reponse,difficulte,chapitre) VALUES " +
-            	    		
-            	    		// PROBABILITÉS
-            	    		"('Combien de façons de choisir 3 élèves parmi 6 ? A: 10 B: 15 C: 20 D: 18', 'C', 0, 'Probabilités')," +
-            	    		"('Dans un schéma de Bernoulli, que représente p ? A: probabilité de succès B: nombre d’essais C: issue D: moyenne', 'A', 1, 'Probabilités')," +
-            	    		"('Dans une loi binomiale, que calcule-t-on ? A: variance B: nombre de succès C: somme D: limite', 'B', 2, 'Probabilités')," +
-            	    		"('Une variable aléatoire est : A: matrice B: fonction C: événement D: nombre réel aléatoire', 'D', 3, 'Probabilités')," +
-            	    		"('Que dit la loi des grands nombres ? A: divergence B: stabilité parfaite C: convergence D: oscillation', 'C', 3, 'Probabilités')," +
-            	    		"('Nombre de suites possibles de 3 lancers de pièce : A: 6 B: 8 C: 4 D: 9', 'B', 0, 'Probabilités')," +
+            		"INSERT OR IGNORE INTO questions(question,reponse,difficulte,chapitre) VALUES " +
 
-            	    		// VECTEURS & PRODUIT SCALAIRE
-            	    		"('Un vecteur représente : A: un point B: une direction et une norme C: une droite D: un nombre', 'B', 0, 'Vecteurs & Produit scalaire')," +
-            	    		"('Produit scalaire de vecteurs orthogonaux : A: -1 B: 1 C: 0 D: dépend', 'C', 1, 'Vecteurs & Produit scalaire')," +
-            	    		"('Condition de colinéarité : A: égalité B: orthogonalité C: proportionnalité D: produit nul', 'C', 2, 'Vecteurs & Produit scalaire')," +
-            	    		"('Norme d’un vecteur : A: longueur B: angle C: volume D: surface', 'A', 1, 'Vecteurs & Produit scalaire')," +
-            	    		"('Formule du produit scalaire : A: u+v B: u×v C: ||u||·||v||·cosθ D: u−v', 'C', 0, 'Vecteurs & Produit scalaire')," +
-            	    		"('Vecteur nul est : A: infini B: longueur nulle C: unité D: direction', 'B', 3, 'Vecteurs & Produit scalaire')," +
+            				
+            		//PROBABILITES
 
-            	    		// GÉOMÉTRIE ESPACE
-            	    		"('Droite paramétrique : A: r=a+tu B: ax+by+c=0 C: x²+y²=1 D: y=ax²', 'A', 0, 'Géométrie espace')," +
-            	    		"('Vecteur normal à un plan : A: parallèle B: perpendiculaire C: tangent D: nul', 'B', 1, 'Géométrie espace')," +
-            	    		"('Équation d’un plan : A: y=ax+b B: ax+by+cz+d=0 C: r=a+tu D: x²+y²=1', 'B', 2, 'Géométrie espace')," +
-            	    		"('Appartenance à une droite : A: dérivation B: substitution C: intégration D: limite', 'B', 1, 'Géométrie espace')," +
-            	    		"('Intersection droite-plan : A: toujours vide B: point ou droite C: cercle D: parallèle', 'B', 3, 'Géométrie espace')," +
-            	    		"('Vecteur directeur : A: scalaire B: direction C: norme D: angle', 'B', 0, 'Géométrie espace')," +
+            		"('Combien de façons de choisir 2 élèves parmi 5 ? A: 20 B: 10 C: 5 D: 15', 'B', 0, 'Probabilités')," +
+            		"('Nombre d’anagrammes du mot BAC ? A: 6 B: 9 C: 3 D: 12', 'A', 1, 'Probabilités')," +
+            		"('Dans un schéma de Bernoulli, les expériences sont : A: variables B: indépendantes C: impossibles D: dépendantes', 'B', 0, 'Probabilités')," +
+            		"('Dans un schéma de Bernoulli, p représente : A: la probabilité de succès B: le nombre d’essais C: la moyenne D: une dérivée', 'A', 1, 'Probabilités')," +
+            		"('Une loi binomiale permet de compter : A: les limites B: les succès C: les vecteurs D: les intégrales', 'B', 0, 'Probabilités')," +
+            		"('Espérance d’une loi binomiale : A: n+p B: p/n C: np D: n²', 'C', 1, 'Probabilités')," +
+            		"('Une variable aléatoire associe : A: un nombre réel à une issue B: une matrice C: une droite D: une dérivée', 'A', 0, 'Probabilités')," +
+            		"('L’espérance représente : A: une limite B: une moyenne théorique C: une dérivée D: une somme', 'B', 1, 'Probabilités')," +
+            		"('La loi des grands nombres parle de : A: convergence B: divergence C: dérivation D: convexité', 'A', 0, 'Probabilités')," +
+            		"('Quand le nombre d’essais augmente, la fréquence tend vers : A: 0 B: l’infini C: la probabilité D: une dérivée', 'C', 1, 'Probabilités')," +
 
-            	    		// LIMITES
-            	    		"('Limite de 1/n : A: 1 B: ∞ C: 0 D: -1', 'C', 0, 'Limites')," +
-            	    		"('Continuité signifie : A: saut B: rupture C: pas de saut D: constante', 'C', 1, 'Limites')," +
-            	    		"('Limite d’un quotient : A: somme B: différence C: quotient D: produit', 'C', 2, 'Limites')," +
-            	    		"('Logarithme de 1 : A: 1 B: 0 C: -1 D: ∞', 'B', 0, 'Limites')," +
-            	    		"('Limite infinie signifie : A: stabilité B: divergence C: oscillation D: nullité', 'B', 3, 'Limites')," +
-            	    		"('Limite d’une fonction continue : A: valeur différente B: égale valeur C: infinie D: nulle', 'B', 1, 'Limites')," +
+            		
+            		//VECTEURS ET PRODUIT SCALAIRE
 
-            	    		// DÉRIVATION
-            	    		"('Dérivée de f(g(x)) : A: f'(g(x))g'(x) B: f+g C: f×g D: g', 'A', 2, 'Dérivation')," +
-            	    		"('Fonction composée : A: f(g(x)) B: f+g C: f×g D: f−g', 'A', 0, 'Dérivation')," +
-            	    		"('Dérivée seconde : A: vitesse B: accélération C: limite D: aire', 'B', 1, 'Dérivation')," +
-            	    		"('Convexité : A: courbure B: constante C: droite D: rupture', 'A', 2, 'Dérivation')," +
-            	    		"('Si f''>0 alors : A: concave B: convexe C: linéaire D: constante', 'B', 3, 'Dérivation')," +
-            	    		"('Rôle de la dérivée : A: aire B: pente C: volume D: distance', 'B', 0, 'Dérivation')," +
+            		"('Un vecteur possède : A: seulement une norme B: une norme et une direction C: seulement une direction D: une courbe', 'B', 0, 'Vecteurs & Produit scalaire')," +
+            		"('Deux vecteurs colinéaires sont : A: proportionnels B: orthogonaux C: opposés D: identiques', 'A', 1, 'Vecteurs & Produit scalaire')," +
+            		"('Produit scalaire de deux vecteurs perpendiculaires : A: -1 B: 1 C: impossible D: 0', 'D', 0, 'Vecteurs & Produit scalaire')," +
+            		"('Le produit scalaire sert à calculer : A: une limite B: une intégrale C: un angle D: une dérivée', 'C', 1, 'Vecteurs & Produit scalaire')," +
+            		"('La norme d’un vecteur correspond à : A: sa longueur B: sa pente C: sa somme D: son angle', 'A', 0, 'Vecteurs & Produit scalaire')," +
+            		"('Un vecteur nul a : A: une norme infinie B: une norme nulle C: une direction fixe D: un angle droit', 'B', 1, 'Vecteurs & Produit scalaire')," +
+            		"('Formule du produit scalaire : A: u-v B: u×v C: ||u|| ||v|| cos(θ) D: u+v', 'C', 0, 'Vecteurs & Produit scalaire')," +
+            		"('Deux vecteurs sont orthogonaux si : A: ils sont égaux B: leur produit scalaire vaut 0 C: ils sont parallèles D: leur somme vaut 0', 'B', 1, 'Vecteurs & Produit scalaire')," +
 
-            	    		//FONCTIONS
-            	    		"('Continuité signifie : A: pas de rupture B: saut C: dérivable D: constante', 'A', 1, 'Fonctions')," +
-            	    		"('Logarithme de ab : A: produit B: somme C: différence D: quotient', 'B', 2, 'Fonctions')," +
-            	    		"('sin(0) = ? A: 0 B: 1 C: π D: -1', 'A', 0, 'Fonctions')," +
-            	    		"('cos(0) = ? A: 0 B: 1 C: -1 D: π', 'B', 0, 'Fonctions')," +
-            	    		"('Fonction trigonométrique : A: polynôme B: linéaire C: sin D: constante', 'C', 1, 'Fonctions')," +
-            	    		"('ln(e) = ? A: 1 B: 0 C: e D: -1', 'A', 0, 'Fonctions')";
+            		
+            		//GÉOMETRIE DANS L’ESPACE
+
+            		"('Une droite paramétrique utilise : A: une intégrale B: un logarithme C: un paramètre réel D: une dérivée', 'C', 0, 'Géométrie espace')," +
+            		"('Dans r=a+tu, u est : A: une limite B: un vecteur directeur C: un point D: une norme', 'B', 1, 'Géométrie espace')," +
+            		"('Équation cartésienne d’un plan : A: ax+by+cz+d=0 B: y=ax² C: x²+y²=1 D: y=ax+b', 'A', 0, 'Géométrie espace')," +
+            		"('Dans un plan, (a,b,c) représente : A: une dérivée B: une solution C: un vecteur normal D: une limite', 'C', 1, 'Géométrie espace')," +
+            		"('Pour trouver un point d’une droite paramétrique, il faut : A: fixer t B: dériver C: intégrer D: factoriser', 'A', 0, 'Géométrie espace')," +
+            		"('Deux droites parallèles ont : A: la même limite B: le même point C: le même vecteur directeur D: la même norme', 'C', 1, 'Géométrie espace')," +
+            		"('Un point appartient à un plan si : A: il annule une dérivée B: il vérifie l’équation C: il diverge D: il est orthogonal', 'B', 0, 'Géométrie espace')," +
+            		"('Intersection de deux plans non parallèles : A: un cercle B: rien C: un point D: une droite', 'D', 1, 'Géométrie espace')," +
+
+            		
+            		//SUITES
+
+            		"('Limite de 1/n quand n tend vers +∞ : A: 0 B: 1 C: +∞ D: -1', 'A', 0, 'Suites')," +
+            		"('Une suite croissante : A: diminue B: augmente C: oscille D: diverge toujours', 'B', 1, 'Suites')," +
+            		"('Une suite bornée possède : A: une dérivée B: une asymptote C: des bornes D: une intégrale', 'C', 0, 'Suites')," +
+            		"('Le théorème des gendarmes concerne : A: les dérivées B: les intégrales C: les vecteurs D: les limites', 'D', 1, 'Suites')," +
+            		"('La suite n² tend vers : A: 0 B: 1 C: -∞ D: +∞', 'D', 0, 'Suites')," +
+            		"('Une suite constante est : A: convergente B: divergente C: périodique D: aléatoire', 'A', 1, 'Suites')," +
+
+            			
+            		// DERIVATION
+
+            		"('La dérivée de f(g(x)) utilise : A: une intégrale B: la règle de chaîne C: un vecteur D: une limite', 'B', 1, 'Dérivation')," +
+            		"('La dérivée seconde étudie : A: la variation de pente B: le volume C: la norme D: la somme', 'A', 0, 'Dérivation')," +
+            		"('Si f''''(x)>0 alors la fonction est : A: constante B: décroissante C: convexe D: concave', 'C', 1, 'Dérivation')," +
+            		"('Une fonction convexe a une courbe : A: tournée vers le haut B: tournée vers le bas C: constante D: nulle', 'A', 0, 'Dérivation')," +
+            		"('Point d’inflexion : A: maximum B: changement de convexité C: minimum D: asymptote', 'B', 1, 'Dérivation')," +
+            		"('Une équation différentielle contient : A: une intégrale B: une dérivée C: un vecteur D: une matrice', 'B', 0, 'Dérivation')," +
+            		"('La fonction f(x)=Ce^x est solution de : A: y''=y B: y''=-y C: y''=0 D: y''=2y', 'A', 1, 'Dérivation')," +
+            		
+            		//FONCTIONS
+            		"('Une fonction continue admet : A: une asymptote B: une transition sans coupure C: une rupture D: un saut', 'B', 0, 'Fonctions')," +
+            		"('Une fonction discontinue possède : A: une dérivée B: une intégrale C: une rupture D: une norme', 'C', 1, 'Fonctions')," +
+            		"('Le domaine de ln(x) est : A: x>0 B: x<0 C: x≠0 D: tous les réels', 'A', 0, 'Fonctions')," +
+            		"('ln(1)= ? A: e B: -1 C: 0 D: 1', 'C', 1, 'Fonctions')," +
+            		"('La période de sin(x) est : A: 0 B: 1 C: π D: 2π', 'D', 0, 'Fonctions')," +
+            		"('tan(x)= ? A: sin(x)+cos(x) B: sin(x)/cos(x) C: cos(x)/sin(x) D: sin²(x)', 'B', 1, 'Fonctions')," +
+            		"('Une fonction affine est : A: discontinue B: impossible C: continue D: périodique', 'C', 0, 'Fonctions')," +
+            		"('Une fonction trigonométrique connue est : A: exp(x) B: ln(x) C: x² D: sin(x)', 'D', 1, 'Fonctions')," +
+            		"('La limite de x² quand x→2 vaut : A: 8 B: 4 C: 2 D: 6', 'B', 0, 'Fonctions')," +
+            		"('Une asymptote verticale correspond à : A: une limite infinie B: une dérivée nulle C: une somme D: une intégrale', 'A', 1, 'Fonctions')," +
+            		"('f∘g signifie : A: f+g B: g-f C: f(g(x)) D: f×g', 'C', 0, 'Fonctions')," +
+            		"('Exemple de fonction composée : A: x² B: x+1 C: 2x D: sin(x²)', 'D', 0, 'Fonctions')" +
+            		";";
             		
             
             stmt.execute("DROP TABLE IF EXISTS questions");
@@ -217,73 +243,83 @@ public class Main {
         
     	//Création des boutons des chapitres
     	
-    	JButton btn2=new JButton("Ouvrir le cours sur le Dénombrement");
-    	btn2.addActionListener(e -> ouvrirPDF(Dénombrement));  	
-    	JButton btnCalculIntegral = new JButton("Ouvrir le cours sur le Calcul Intégral");
-    	btnCalculIntegral.addActionListener(e -> ouvrirPDF(CalculIntegral));
-    	JButton btnCalculVectoriel = new JButton("Ouvrir le cours sur le Calcul Vectoriel");
-    	btnCalculVectoriel.addActionListener(e -> ouvrirPDF(CalculVectoriel));
-    	JButton btnComposeeFonctions = new JButton("Ouvrir le cours sur les Fonctions Composées");
-    	btnComposeeFonctions.addActionListener(e -> ouvrirPDF(ComposéeFonctions));
-    	JButton btnContinuite = new JButton("Ouvrir le cours sur la Continuité");
-    	btnContinuite.addActionListener(e -> ouvrirPDF(Continuite));
-    	JButton btnConvexite = new JButton("Ouvrir le cours sur la Convexité");
-    	btnConvexite.addActionListener(e -> ouvrirPDF(Convexite));
-    	JButton btnDeriveeSeconde = new JButton("Ouvrir le cours sur la Dérivée Seconde");
-    	btnDeriveeSeconde.addActionListener(e -> ouvrirPDF(DeriveeSeconde));
-    	JButton btnEquaDiff = new JButton("Ouvrir le cours sur les Équations Différentielles");
-    	btnEquaDiff.addActionListener(e -> ouvrirPDF(EquaDiff));
-    	JButton btnEquationCartesienne = new JButton("Ouvrir le cours sur l'Équation Cartésienne");
-    	btnEquationCartesienne.addActionListener(e -> ouvrirPDF(EquationCartesienne));
-    	JButton btnFonctionsTrigo = new JButton("Ouvrir le cours sur les Fonctions Trigonométriques");
-    	btnFonctionsTrigo.addActionListener(e -> ouvrirPDF(FonctionsTrigo));
-    	JButton btnGrandsNombres = new JButton("Ouvrir le cours sur les Grands Nombres");
+    	JButton btnDenombrement=new JButton("Ouvrir le cours sur le Dénombrement : PROBABILITE");
+    	btnDenombrement.addActionListener(e -> ouvrirPDF(Dénombrement));  
+    	JButton btnGrandsNombres = new JButton("Ouvrir le cours sur les Grands Nombres : PROBABILITE");
     	btnGrandsNombres.addActionListener(e -> ouvrirPDF(GrandsNombres));
-    	JButton btnIntegration = new JButton("Ouvrir le cours sur l'Intégration");
-    	btnIntegration.addActionListener(e -> ouvrirPDF(Integration));
-    	JButton btnLimitesFonctions = new JButton("Ouvrir le cours sur les Limites de Fonctions");
-    	btnLimitesFonctions.addActionListener(e -> ouvrirPDF(LimitesFonctions));
-    	JButton btnLimiteSuite = new JButton("Ouvrir le cours sur les Limites de Suites");
-    	btnLimiteSuite.addActionListener(e -> ouvrirPDF(LimiteSuite));
-    	JButton btnLogarithmes = new JButton("Ouvrir le cours sur les Logarithmes");
-    	btnLogarithmes.addActionListener(e -> ouvrirPDF(Logarithmes));
-    	JButton btnLoiBinomiale = new JButton("Ouvrir le cours sur la Loi Binomiale");
+    	JButton btnLoiBinomiale = new JButton("Ouvrir le cours sur la Loi Binomiale : PROBABILITE");
     	btnLoiBinomiale.addActionListener(e -> ouvrirPDF(LoiBinomiale));
-    	JButton btnProduitScalaire = new JButton("Ouvrir le cours sur le Produit Scalaire");
-    	btnProduitScalaire.addActionListener(e -> ouvrirPDF(ProduitScalaire));
-    	JButton btnRepresentationParam = new JButton("Ouvrir le cours sur la Représentation Paramétrique");
-    	btnRepresentationParam.addActionListener(e -> ouvrirPDF(RepresentationParametrique));
-    	JButton btnSchemaBernoulli = new JButton("Ouvrir le cours sur le Schéma de Bernoulli");
+    	JButton btnSchemaBernoulli = new JButton("Ouvrir le cours sur le Schéma de Bernoulli : PROBABILITE");
     	btnSchemaBernoulli.addActionListener(e -> ouvrirPDF(SchemaBernouilli));
-    	JButton btnVariablesAleatoires = new JButton("Ouvrir le cours sur les Variables Aléatoires");
+    	JButton btnVariablesAleatoires = new JButton("Ouvrir le cours sur les Variables Aléatoires : PROBABILITE");
     	btnVariablesAleatoires.addActionListener(e -> ouvrirPDF(VariablesAleatoires));	
+
+    	JButton btnProduitScalaire = new JButton("Ouvrir le cours sur le Produit Scalaire : VECTEURS ET PRODUIT SCALAIRE");
+    	btnProduitScalaire.addActionListener(e -> ouvrirPDF(ProduitScalaire));
+    	JButton btnCalculVectoriel = new JButton("Ouvrir le cours sur le Calcul Vectoriel : VECTEURS ET PRODUIT SCALAIRE");
+    	btnCalculVectoriel.addActionListener(e -> ouvrirPDF(CalculVectoriel));
+
+    	JButton btnEquationCartesienne = new JButton("Ouvrir le cours sur l'Équation Cartésienne : GEOMETRIE DANS L'ESPACE");
+    	btnEquationCartesienne.addActionListener(e -> ouvrirPDF(EquationCartesienne));
+
+    	JButton btnRepresentationParam = new JButton("Ouvrir le cours sur la Représentation Paramétrique : GEOMETRIE DANS L'ESPACE");
+    	btnRepresentationParam.addActionListener(e -> ouvrirPDF(RepresentationParametrique));
+
+    	JButton btnLimiteSuite = new JButton("Ouvrir le cours sur les Limites de Suites : SUITES");
+    	btnLimiteSuite.addActionListener(e -> ouvrirPDF(LimiteSuite));
+
+    	JButton btnConvexite = new JButton("Ouvrir le cours sur la Convexité : DERIVATION");
+    	btnConvexite.addActionListener(e -> ouvrirPDF(Convexite));
+    	JButton btnDeriveeSeconde = new JButton("Ouvrir le cours sur la Dérivée Seconde : DERIVATION");
+    	btnDeriveeSeconde.addActionListener(e -> ouvrirPDF(DeriveeSeconde));
+    	JButton btnEquaDiff = new JButton("Ouvrir le cours sur les Équations Différentielles : DERIVATION");
+    	btnEquaDiff.addActionListener(e -> ouvrirPDF(EquaDiff));
+    	
+    	JButton btnLimitesFonctions = new JButton("Ouvrir le cours sur les Limites de Fonctions : FONCTIONS");
+    	btnLimitesFonctions.addActionListener(e -> ouvrirPDF(LimitesFonctions));
+    	JButton btnCalculIntegral = new JButton("Ouvrir le cours sur le Calcul Intégral : FONCTIONS");
+    	btnCalculIntegral.addActionListener(e -> ouvrirPDF(CalculIntegral));
+    	JButton btnComposeeFonctions = new JButton("Ouvrir le cours sur les Fonctions Composées : FONCTIONS");
+    	btnComposeeFonctions.addActionListener(e -> ouvrirPDF(ComposéeFonctions));
+    	JButton btnContinuite = new JButton("Ouvrir le cours sur la Continuité : FONCTIONS");
+    	btnContinuite.addActionListener(e -> ouvrirPDF(Continuite));
+    	JButton btnFonctionsTrigo = new JButton("Ouvrir le cours sur les Fonctions Trigonométriques : FONCTIONS");
+    	btnFonctionsTrigo.addActionListener(e -> ouvrirPDF(FonctionsTrigo));
+    	JButton btnIntegration = new JButton("Ouvrir le cours sur l'Intégration : FONCTIONS");
+    	btnIntegration.addActionListener(e -> ouvrirPDF(Integration));
+    	JButton btnLogarithmes = new JButton("Ouvrir le cours sur les Logarithmes : FONCTIONS");
+    	btnLogarithmes.addActionListener(e -> ouvrirPDF(Logarithmes));
     	
 
     	//Affichage des boutons 
     	frame.add(btnStart);
     	frame.add(btnFinal);
     	 
-    	frame.add(btn2);
-    	frame.add(btnComposeeFonctions);
-    	frame.add(btnCalculIntegral);
+    	frame.add(btnDenombrement);
+    	frame.add(btnGrandsNombres);
+    	frame.add(btnLoiBinomiale);
+    	frame.add(btnSchemaBernoulli);
+    	frame.add(btnVariablesAleatoires);
+
     	frame.add(btnCalculVectoriel);
-    	frame.add(btnComposeeFonctions);
-    	frame.add(btnContinuite);
+    	frame.add(btnProduitScalaire);
+
+    	frame.add(btnRepresentationParam);
+    	frame.add(btnEquationCartesienne);
+
+    	frame.add(btnLimiteSuite);
+    	
     	frame.add(btnConvexite);
     	frame.add(btnDeriveeSeconde);
     	frame.add(btnEquaDiff);
-    	frame.add(btnEquationCartesienne);
+    	
+    	frame.add(btnCalculIntegral);
+    	frame.add(btnComposeeFonctions);
+    	frame.add(btnContinuite);
     	frame.add(btnFonctionsTrigo);
-    	frame.add(btnGrandsNombres);
     	frame.add(btnIntegration);
     	frame.add(btnLimitesFonctions);
-    	frame.add(btnLimiteSuite);
     	frame.add(btnLogarithmes);
-    	frame.add(btnLoiBinomiale);
-    	frame.add(btnProduitScalaire);
-    	frame.add(btnRepresentationParam);
-    	frame.add(btnSchemaBernoulli);
-    	frame.add(btnVariablesAleatoires);
     	
     	frame.setVisible(true);
     	
@@ -302,6 +338,7 @@ public class Main {
     }
     
 }
+
 
 
 
