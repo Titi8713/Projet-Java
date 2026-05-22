@@ -1,61 +1,28 @@
-Phase 1 — Conception 
 Séance 1 : Définir le projet
+-définir les fonctionnalités principales, comment va fonctionner l'application, établir le planning, définir les chapitres de maths (recherche), créer/penser structure des classes principales, préparer les questions QCM, associer chaque question à une notion de cours, et enfin ce qu'on pourrait ajouter si on a de l’avance
 
 
--définir les fonctionnalités principales
--comment va fonctionner l'application
--ce qu'on pourrait ajouter si avance
-
--définir les chapitres de maths
--créer structure des classes principales
--préparer les questions QCM
--associer chaque question à une notion de cours
-
-
-Phase 2 — Développement concret Java 
 Séance 2 : Gestion du QCM
-
--classe Question
--classe Réponse
--affichage QCM dans la console
--lecture des réponses utilisateur
--score par catégorie
-
-
+-classe Question, classe Réponse, affichage du QCM dans la console
+-lecture des réponses utilisateur puis le score par catégorie
 
 Séance 3 : Analyse des erreurs
--système de détection des lacunes
+-système de détection des lacunes de l’élève (ce qu’il faudra recommander ensuite)
 -tableau correspondance erreurs / cours
 
 
-
-
-Phase 3 — Base de données de cours 
 Séance 4
+-Créer stockage des cours + fonctionnement concret dans Java (apprendre et comprendre comment fonctionne la base de données)
+-Associer chaque niveau à chaque notion
 
--Créer stockage des cours + fonctionnement concret dans  Java
--Associer 
-  -chaque niveau
-  -chaque notion
+Séance 5 :
+Apprentissage et développement de l’interface graphique : écran QCM, écran résultats. (Quelle interface utiliser, comment l’utiliser dans Java …)
 
-Phase 4 — Interface graphique 
-Séance 5
--écran QCM
--écran résultats
-
-Phase 5 — Tests et amélioration 
 Séance 6
+-tester erreurs, réponses, affichage
+-correction bugs, optimisation du code
 
--tester erreurs
--tester réponses 
--tester affichage
--correction bugs
--optimisation code
-
-
-Phase 6 — Préparation soutenance + travail à rendre
 Dernière séance
-
 -documentation technique
 -préparation présentation orale
 -démonstration projet (vidéo)
